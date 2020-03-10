@@ -28,7 +28,7 @@ class MapManagementClass():
             den_corretta="Friuli Venezia Giulia"
         else:
             den_corretta=regione
-        self.data = pd.read_csv(self.getUrl.update()) 
+        self.data = pd.read_csv(self.getUrl.update(),sep=",") 
         self.data = self.data[self.data["lat"] > 0 ]
         self.data=self.data[self.data["casi_totali"]>0]
         self.data=self.data[self.data["denominazione_regione"]==den_corretta]
