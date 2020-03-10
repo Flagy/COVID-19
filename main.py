@@ -6,7 +6,7 @@ from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 import requests
 import json
 from pprint import pprint
-from cryptography.fernet import Fernet
+import os
 from LogicMap.MapManagementClass import MapManagementClass
 
 mappe=MapManagementClass()
@@ -70,21 +70,14 @@ def on_callback_query(msg):
         path=mappe.getImage(query_data)
         bot.sendPhoto(from_id, open(path,'rb'))
         bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
-        
-        
+                
     else:
         bot.sendMessage(from_id, "Scelta non valida")
         
-        
-  
 
 if __name__ == "__main__":
-    with open("../key.key", "rb") as fd:
-        key = fd.read()
-        f = Fernet(key)
-        TOKEN_ENCR = b"gAAAAABeZsv_JTc8gL4T9WOPQsjZtspep-ZckE-QoU3jr1i7PHAr_hxcYPqmvz8bw3jbCGLiY6F16hNNYQk2o5AN-Cs4IYcoEEm8Yb4VBEOA92a00EzGxXS1miwJJajoDymIeh8TeA2j"
-        TOKEN = f.decrypt(TOKEN_ENCR).decode()
-
+    
+    TOKEN = os.environ.get('API_TOKEN', None)
     urlNationalData = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json"
     jsonData = getDataFromJson(urlNationalData)
     bot = telepot.Bot(TOKEN)
