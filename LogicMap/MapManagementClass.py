@@ -2,6 +2,7 @@ import pandas as pd
 import geopandas
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from DocManager import DocManager
 
 
 
@@ -9,12 +10,13 @@ class MapManagementClass():
     def __init__(self):
         print("Launch Map Manager")
         self.data=[]
+        self.getUrl=DocManager()
         
         
 
     
     def purifyData(self,regione):
-        filepath="dati-province/dpc-covid19-ita-province-20200308.csv"
+        
         den_corretta=""
         if regione=="Valle_D_Aosta":
             den_corretta="Valle d'Aosta"
@@ -26,7 +28,7 @@ class MapManagementClass():
             den_corretta="Friuli Venezia Giulia"
         else:
             den_corretta=regione
-        self.data = pd.read_csv(filepath,encoding = "ISO-8859-1") 
+        self.data = pd.read_csv(self.getUrl.update()) 
         self.data = self.data[self.data["lat"] > 0 ]
         self.data=self.data[self.data["casi_totali"]>0]
         self.data=self.data[self.data["denominazione_regione"]==den_corretta]
