@@ -4,6 +4,4 @@ cryptography
 pandas
 matplotlib
 geopandas
-datetime
-json
 pprint
