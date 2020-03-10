@@ -8,8 +8,6 @@ import json
 from pprint import pprint
 from cryptography.fernet import Fernet
 from LogicMap.MapManagementClass import MapManagementClass
-import urllib3
-
 
 mappe=MapManagementClass()
 listOfRegions=['Abruzzo','Basilicata','Calabria','Campania','Emilia_Romagna','Friuli_Venezia_Giulia','Friuli_Venezia_Giulia','Lazio','Liguria',

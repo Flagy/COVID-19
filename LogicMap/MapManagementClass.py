@@ -7,14 +7,13 @@ from DocManager import DocManager
 
 
 class MapManagementClass():
+
     def __init__(self):
         print("Launch Map Manager")
         self.data=[]
         self.getUrl=DocManager()
         
-        
 
-    
     def purifyData(self,regione):
         
         den_corretta=""
@@ -33,8 +32,7 @@ class MapManagementClass():
         self.data=self.data[self.data["casi_totali"]>0]
         self.data=self.data[self.data["denominazione_regione"]==den_corretta]
        
-        
-        
+           
     def getImage(self,param):
         self.purifyData(param)
         gdf = geopandas.GeoDataFrame(self.data, geometry=geopandas.points_from_xy(self.data.long, self.data.lat))
