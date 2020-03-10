@@ -7,6 +7,18 @@ import requests
 import json
 from pprint import pprint
 from cryptography.fernet import Fernet
+from LogicMap.MapManagementClass import MapManagementClass
+import urllib3
+
+
+mappe=MapManagementClass()
+listOfRegions=['Abruzzo','Basilicata','Calabria','Campania','Emilia_Romagna','Friuli_Venezia_Giulia','Friuli_Venezia_Giulia','Lazio','Liguria',
+               'Lombardia','Marche','Molise','Piemonte','Puglia','Sardegna','Sicilia','Toscana','Trentino_Alto_Adige','Umbria','Valle_D_Aosta','Veneto']
+
+mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text = 'Testuali',callback_data = 'textualData')],
+            [InlineKeyboardButton(text = 'Grafiche',callback_data = 'Images')]])
+
 
 def getDataFromJson(url):
     data = requests.get(url)
@@ -20,10 +32,8 @@ def on_chat_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     pprint(msg)
     if content_type == 'text':
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text = 'Testuali',callback_data = 'textualData')],
-            [InlineKeyboardButton(text = 'Grafiche',callback_data = 'Images')]])
-        bot.sendMessage(chat_id, "ultime informazioni:", reply_markup = keyboard)
+        
+        bot.sendMessage(chat_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
 
 def on_callback_query(msg):
     query_id, from_id, query_data = telepot.glance(msg, flavor = 'callback_query')
@@ -33,6 +43,41 @@ def on_callback_query(msg):
         for key, value in jsonData[-1].items():
             msg_str += str(key) + ': ' + str(value) +'\n'
         bot.sendMessage(from_id, msg_str)
+        bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
+    elif query_data=="Images":
+         keyboard = InlineKeyboardMarkup(inline_keyboard=[
+             [InlineKeyboardButton(text = 'Abruzzo',callback_data = 'Abruzzo')],
+             [InlineKeyboardButton(text = 'Basilicata',callback_data = 'Basilicata')],
+            [InlineKeyboardButton(text = 'Calabria',callback_data = 'Calabria')],
+            [InlineKeyboardButton(text = 'Campania',callback_data = 'Campania')],
+            [InlineKeyboardButton(text = 'Emilia Romagna',callback_data = 'Emilia_Romagna')],
+            [InlineKeyboardButton(text = 'Friuli Venezia Giulia',callback_data = 'Friuli_Venezia_Giulia')],
+            [InlineKeyboardButton(text = 'Lazio',callback_data = 'Lazio')],
+            [InlineKeyboardButton(text = 'Liguria',callback_data = 'Liguria')],
+            [InlineKeyboardButton(text = 'Lombardia',callback_data = 'Lombardia')],
+            [InlineKeyboardButton(text = 'Marche',callback_data = 'Marche')],
+            [InlineKeyboardButton(text = 'Molise',callback_data = 'Molise')],
+            [InlineKeyboardButton(text = 'Piemonte',callback_data = 'Piemonte')],
+            [InlineKeyboardButton(text = 'Puglia',callback_data = 'Puglia')],
+            [InlineKeyboardButton(text = 'Sardegna',callback_data = 'Sardegna')],
+            [InlineKeyboardButton(text = 'Sicilia',callback_data = 'Sicilia')],
+            [InlineKeyboardButton(text = 'Toscana',callback_data = 'Toscana')],
+            [InlineKeyboardButton(text = 'Trentino Alto Adige',callback_data = 'Trentino_Alto_Adige')],
+            [InlineKeyboardButton(text = 'Umbria',callback_data = 'Umbria')],
+            [InlineKeyboardButton(text = "Valle D'Aosta",callback_data = 'Valle_D_Aosta')],
+            [InlineKeyboardButton(text = 'Veneto',callback_data = 'Veneto')]
+            ])
+         bot.sendMessage(from_id, "Seleziona la regione:", reply_markup = keyboard)
+    elif query_data in listOfRegions:
+        path=mappe.getImage(query_data)
+        bot.sendPhoto(from_id, open(path,'rb'))
+        bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
+        
+        
+    else:
+        bot.sendMessage(from_id, "Scelta non valida")
+        
+        
   
 
 if __name__ == "__main__":
@@ -46,9 +91,7 @@ if __name__ == "__main__":
     jsonData = getDataFromJson(urlNationalData)
     bot = telepot.Bot(TOKEN)
     bot.urlNationalData = urlNationalData
+    
     MessageLoop(bot, {'chat':on_chat_message,'callback_query':on_callback_query}).run_as_thread()
     print('Listening...')
 
-    # Keep the program running.
-    while 1:
-        time.sleep(10)

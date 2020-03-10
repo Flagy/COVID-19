@@ -8,18 +8,28 @@ import matplotlib.patches as mpatches
 class MapManagementClass():
     def __init__(self):
         print("Launch Map Manager")
-        self.data=self.loadData()
+        self.data=[]
         
         
-    def loadData(self):
-        filepath="dati-province/dpc-covid19-ita-province-20200308.csv"
-        data = pd.read_csv(filepath,encoding = "ISO-8859-1") 
-        return data
+
     
     def purifyData(self,regione):
+        filepath="dati-province/dpc-covid19-ita-province-20200308.csv"
+        den_corretta=""
+        if regione=="Valle_D_Aosta":
+            den_corretta="Valle d'Aosta"
+        elif regione=="Emilia_Romagna":
+            den_corretta="Emilia Romagna"
+        elif regione=="Trentino_Alto_Adige":
+            den_corretta="Trentino Alto Adige"
+        elif regione=="Friuli_Venezia_Giulia":
+            den_corretta="Friuli Venezia Giulia"
+        else:
+            den_corretta=regione
+        self.data = pd.read_csv(filepath,encoding = "ISO-8859-1") 
         self.data = self.data[self.data["lat"] > 0 ]
         self.data=self.data[self.data["casi_totali"]>0]
-        self.data=self.data[self.data["denominazione_regione"]==regione]
+        self.data=self.data[self.data["denominazione_regione"]==den_corretta]
        
         
         
@@ -31,8 +41,9 @@ class MapManagementClass():
         for provincia in self.data["denominazione_provincia"]:
             legenda[i]=provincia
             i=i+1
-        world = geopandas.read_file("LogicMap/geomappeRegioni/Lombardia.geojson")
-        ax = world.plot(color='white', edgecolor='black')
+        world = geopandas.read_file("LogicMap/geomappeRegioni/"+param+".geojson")
+        ax = world.plot(color='white', edgecolor='black', figsize=(8, 4))
+        
         ax.set_axis_off()
         list_of_province=[]
         k=0
@@ -47,4 +58,5 @@ class MapManagementClass():
         for x, y, label,num_casi in zip(self.data["long"],self.data["lat"] ,lista_indici[0],self.data['casi_totali'].apply(str)):
             ax.annotate(num_casi, xy=(x, y), xytext=(-10, 0), textcoords="offset points",weight='bold',fontsize=10)
         gdf.plot(ax=ax, color='#f97d77', markersize=self.data['casi_totali'])
-        plt.show()
+        plt.savefig('LogicMap/temp/temp_1.png', dpi=199)
+        return('./LogicMap/temp/temp_1.png')
