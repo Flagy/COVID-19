@@ -23,13 +23,6 @@ class GraphManager():
             plt.xticks(rotation=90)
             plt.savefig('./GraphManagement/tempGraph/temp_1.png', bbox_inches = "tight",dpi=199)
             return('./GraphManagement/tempGraph/temp_1.png')
-        except:
+        except Exception as e:
+            print(e)            
             return('Not Valid Param')
-
-
-
-
-
-
-
-plt.show()
