@@ -8,15 +8,17 @@ import json
 from pprint import pprint
 import os
 from LogicMap.MapManagementClass import MapManagementClass
+from LogicMap.DocManager import DocManager
 
-mappe=MapManagementClass()
+
 listOfRegions=['Abruzzo','Basilicata','Calabria','Campania','Emilia_Romagna','Friuli_Venezia_Giulia','Friuli_Venezia_Giulia','Lazio','Liguria',
                'Lombardia','Marche','Molise','Piemonte','Puglia','Sardegna','Sicilia','Toscana','Trentino_Alto_Adige','Umbria','Valle_D_Aosta','Veneto']
 
 mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Testuali',callback_data = 'textualData')],
             [InlineKeyboardButton(text = 'Grafiche',callback_data = 'Images')]])
-
+data=DocManager.update()
+mappe=MapManagementClass(data)
 
 def getDataFromJson(url):
     data = requests.get(url)

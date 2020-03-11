@@ -8,10 +8,10 @@ from LogicMap.DocManager import DocManager
 
 class MapManagementClass():
 
-    def __init__(self):
+    def __init__(self,data):
         print("Launch Map Manager")
-        self.data=[]
-        self.getUrl=DocManager()
+        self.data=data
+        
         
 
     def purifyData(self,regione):
@@ -27,7 +27,7 @@ class MapManagementClass():
             den_corretta="Friuli Venezia Giulia"
         else:
             den_corretta=regione
-        self.data = pd.read_csv(self.getUrl.update(),sep=",") 
+        self.data = pd.read_csv(self.data,sep=",") 
         
         self.data = self.data[self.data["lat"] > 0 ]
         self.data=self.data[self.data["totale_casi"]>0]
