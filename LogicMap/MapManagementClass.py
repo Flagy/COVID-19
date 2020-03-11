@@ -10,12 +10,15 @@ class MapManagementClass():
 
     def __init__(self,data):
         print("Launch Map Manager")
-        self.data=data
+        self.origData=data
+        self.origData=pd.read_csv(self.origData,sep=",")
+        self.data=[]
+        
         
         
 
     def purifyData(self,regione):
-        
+        self.data =  self.origData
         den_corretta=""
         if regione=="Valle_D_Aosta":
             den_corretta="Valle d'Aosta"
@@ -27,7 +30,9 @@ class MapManagementClass():
             den_corretta="Friuli Venezia Giulia"
         else:
             den_corretta=regione
-        self.data = pd.read_csv(self.data,sep=",") 
+        print(self.data)
+        
+        
         
         self.data = self.data[self.data["lat"] > 0 ]
         self.data=self.data[self.data["totale_casi"]>0]
@@ -35,6 +40,7 @@ class MapManagementClass():
        
            
     def getImage(self,param):
+       
         self.purifyData(param)
         gdf = geopandas.GeoDataFrame(self.data, geometry=geopandas.points_from_xy(self.data.long, self.data.lat))
         legenda={}
@@ -58,6 +64,6 @@ class MapManagementClass():
         lista_indici= pd.DataFrame(list(legenda.keys()))
         for x, y, label,num_casi in zip(self.data["long"],self.data["lat"] ,lista_indici[0],self.data['totale_casi'].apply(str)):
             ax.annotate(num_casi, xy=(x, y), xytext=(-10, 0), textcoords="offset points",weight='bold',fontsize=10)
-        gdf.plot(ax=ax, color='#f97d77', markersize=self.data['casi_totali'])
+        gdf.plot(ax=ax, color='#f97d77', markersize=self.data['totale_casi'])
         plt.savefig('LogicMap/temp/temp_1.png', dpi=199)
         return('./LogicMap/temp/temp_1.png')

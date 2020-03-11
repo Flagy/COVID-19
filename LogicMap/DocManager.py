@@ -23,9 +23,9 @@ class DocManager():
             
     def urlBuilder(self,yesterday=False):
        if yesterday:
-           self.url.replace("{YYYYMMDD}",(datetime.today()- timedelta(days=1)).strftime('%Y%m%d'))
+           self.url=self.url.replace("{YYYYMMDD}",(datetime.today()- timedelta(days=1)).strftime('%Y%m%d'))
        else:
-           self.url.replace("{YYYYMMDD}",datetime.today().strftime('%Y%m%d'))
+           self.url=self.url.replace("{YYYYMMDD}",datetime.today().strftime('%Y%m%d'))
 
     def reset(self):
         self.url= "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-province/dpc-covid19-ita-province-{YYYYMMDD}.csv"
