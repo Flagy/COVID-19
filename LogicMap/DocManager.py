@@ -11,10 +11,10 @@ class DocManager():
     def update(self):
         now = datetime.now()
         if datetime.strptime(now.strftime("%H:%M:%S"),"%H:%M:%S")>datetime.strptime("18:30:00","%H:%M:%S"):
-            self.urlBuilder(self.url)
+            self.urlBuilder()
             r = requests.get(self.url)
         else:
-            self.urlBuilder(self.url,True)
+            self.urlBuilder(True)
             r = requests.get(self.url)
         self.reset()
         return(StringIO(r.text))
