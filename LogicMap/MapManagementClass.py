@@ -48,7 +48,7 @@ class MapManagementClass():
         for provincia in self.data["denominazione_provincia"]:
             legenda[i]=provincia
             i=i+1
-        world = geopandas.read_file("geomappeRegioni/"+param+".geojson")
+        world = geopandas.read_file("LogicMap/geomappeRegioni/"+param+".geojson")
         ax = world.plot(color='white', edgecolor='black', figsize=(8, 4))
         
         ax.set_axis_off()
@@ -65,5 +65,5 @@ class MapManagementClass():
         for x, y, label,num_casi in zip(self.data["long"],self.data["lat"] ,lista_indici[0],self.data['totale_casi'].apply(str)):
             ax.annotate(num_casi, xy=(x, y), xytext=(-10, 0), textcoords="offset points",weight='bold',fontsize=10)
         gdf.plot(ax=ax, color='#f97d77', markersize=self.data['totale_casi'])
-        plt.savefig('temp/temp_1.png', dpi=199)
+        plt.savefig('LogicMap/temp/temp_1.png', dpi=199)
         return('./LogicMap/temp/temp_1.png')

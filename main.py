@@ -9,16 +9,20 @@ from pprint import pprint
 import os
 from LogicMap.MapManagementClass import MapManagementClass
 from LogicMap.DocManager import DocManager
+from GraphManagement.GraphManager import GraphManager
 
 
 listOfRegions=['Abruzzo','Basilicata','Calabria','Campania','Emilia_Romagna','Friuli_Venezia_Giulia','Friuli_Venezia_Giulia','Lazio','Liguria',
                'Lombardia','Marche','Molise','Piemonte','Puglia','Sardegna','Sicilia','Toscana','Trentino_Alto_Adige','Umbria','Valle_D_Aosta','Veneto']
-
+listOfGraphs=["Ricoverati con sintomi","Terapia intensiva",'Totale ospedalizzati', "Isolamento domiciliare", 'Totale attualmente positivi', "Nuovi attualmente positivi",'Dismessi guariti',
+              'Deceduti','Totale casi','Tamponi']
 mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Testuali',callback_data = 'textualData')],
-            [InlineKeyboardButton(text = 'Grafiche',callback_data = 'Images')]])
+            [InlineKeyboardButton(text = 'Grafiche',callback_data = 'Images')],
+[InlineKeyboardButton(text = 'Andamenti',callback_data = 'Andamenti')],])
 data=DocManager().update()
 mappe=MapManagementClass(data)
+grafi=GraphManager()
 
 def getDataFromJson(url):
     data = requests.get(url)
@@ -68,6 +72,32 @@ def on_callback_query(msg):
             [InlineKeyboardButton(text = 'Veneto',callback_data = 'Veneto')]
             ])
          bot.sendMessage(from_id, "Seleziona la regione:", reply_markup = keyboard)
+    elif query_data=="Andamenti":
+        keyboardGraph = InlineKeyboardMarkup(inline_keyboard=[
+
+            [InlineKeyboardButton(text="Ricoverati con sintomi", callback_data="Ricoverati con sintomi")],
+            [InlineKeyboardButton(text="Terapia intensiva", callback_data="Terapia intensiva")],
+            [InlineKeyboardButton(text='Totale ospedalizzati', callback_data='Totale ospedalizzati')],
+            [InlineKeyboardButton(text='Isolamento domiciliare', callback_data='Isolamento domiciliare')],
+            [InlineKeyboardButton(text='Totale attualmente positivi', callback_data='Totale attualmente positivi')],
+            [InlineKeyboardButton(text='Nuovi attualmente positivi', callback_data='Nuovi attualmente positivi')],
+            [InlineKeyboardButton(text='Dismessi guariti', callback_data='Dismessi guariti')],
+            [InlineKeyboardButton(text='Deceduti', callback_data="Deceduti")],
+            [InlineKeyboardButton(text="Totale casi", callback_data="Totale casi")],
+            [InlineKeyboardButton(text='Tamponi', callback_data='Tamponi')]
+        ])
+        bot.sendMessage(from_id, "Quale grafico vuoi visualizzare:", reply_markup=keyboardGraph)
+    elif query_data in listOfGraphs:
+        path=grafi.printData(query_data)
+        if path!='Not Valid Param':
+            bot.sendPhoto(from_id, open(path, 'rb'))
+            bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
+        else:
+            bot.sendMessage(from_id, "Scelta non valida")
+            bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
+
+
+
     elif query_data in listOfRegions:
         path=mappe.getImage(query_data)
         bot.sendPhoto(from_id, open(path,'rb'))
@@ -79,7 +109,9 @@ def on_callback_query(msg):
 
 if __name__ == "__main__":
     
-    TOKEN = os.environ.get('API_TOKEN', None)
+    TOKEN = "1142245923:AAG1ZFHUeeWQPeeYtL6Wl-zkGu8NB7rQgYU"
+        #os.environ.get('API_TOKEN', None)
+    print(TOKEN)
     
     urlNationalData = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json"
     jsonData = getDataFromJson(urlNationalData)
