@@ -2,7 +2,7 @@ import pandas as pd
 import geopandas
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-from DocManager import DocManager
+from LogicMap.DocManager import DocManager
 
 
 

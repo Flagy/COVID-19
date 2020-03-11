@@ -77,12 +77,13 @@ def on_callback_query(msg):
 
 if __name__ == "__main__":
     
-    TOKEN = os.environ.get('API_TOKEN', None)
+    TOKEN = "1142245923:AAG1ZFHUeeWQPeeYtL6Wl-zkGu8NB7rQgYU"
+    #os.environ.get('API_TOKEN', 
     urlNationalData = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json"
     jsonData = getDataFromJson(urlNationalData)
     bot = telepot.Bot(TOKEN)
     bot.urlNationalData = urlNationalData
     
-    MessageLoop(bot, {'chat':on_chat_message,'callback_query':on_callback_query}).run_as_thread()
+    MessageLoop(bot, {'chat':on_chat_message,'callback_query':on_callback_query}).run_forever()
     print('Listening...')
 
