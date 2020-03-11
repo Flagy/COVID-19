@@ -28,8 +28,9 @@ class MapManagementClass():
         else:
             den_corretta=regione
         self.data = pd.read_csv(self.getUrl.update(),sep=",") 
+        
         self.data = self.data[self.data["lat"] > 0 ]
-        self.data=self.data[self.data["casi_totali"]>0]
+        self.data=self.data[self.data["totale_casi"]>0]
         self.data=self.data[self.data["denominazione_regione"]==den_corretta]
        
            
@@ -47,7 +48,7 @@ class MapManagementClass():
         ax.set_axis_off()
         list_of_province=[]
         k=0
-        for i in self.data['casi_totali']:
+        for i in self.data['totale_casi']:
             patch=mpatches.Patch( edgecolor="w", facecolor="w", color="w",label=str(i)+ " : "+legenda[k])
             k=k+1
             list_of_province.append(patch)
@@ -55,7 +56,7 @@ class MapManagementClass():
         ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),handles=list_of_province)
         lista_indici= pd.DataFrame(list(legenda.keys()))
-        for x, y, label,num_casi in zip(self.data["long"],self.data["lat"] ,lista_indici[0],self.data['casi_totali'].apply(str)):
+        for x, y, label,num_casi in zip(self.data["long"],self.data["lat"] ,lista_indici[0],self.data['totale_casi'].apply(str)):
             ax.annotate(num_casi, xy=(x, y), xytext=(-10, 0), textcoords="offset points",weight='bold',fontsize=10)
         gdf.plot(ax=ax, color='#f97d77', markersize=self.data['casi_totali'])
         plt.savefig('LogicMap/temp/temp_1.png', dpi=199)
