@@ -17,7 +17,7 @@ listOfRegions=['Abruzzo','Basilicata','Calabria','Campania','Emilia_Romagna','Fr
 mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Testuali',callback_data = 'textualData')],
             [InlineKeyboardButton(text = 'Grafiche',callback_data = 'Images')]])
-data=DocManager.update()
+data=DocManager().update()
 mappe=MapManagementClass(data)
 
 def getDataFromJson(url):
