@@ -50,7 +50,6 @@ class MapManagementClass():
             i=i+1
         world = geopandas.read_file("LogicMap/geomappeRegioni/"+param+".geojson")
         ax = world.plot(color='white', edgecolor='black', figsize=(8, 4))
-        
         ax.set_axis_off()
         list_of_province=[]
         k=0
