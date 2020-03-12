@@ -50,8 +50,8 @@ def on_callback_query(msg):
         bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
     elif query_data=="Images":
          keyboard = InlineKeyboardMarkup(inline_keyboard=[
-             [InlineKeyboardButton(text = 'Abruzzo',callback_data = 'Abruzzo')],
-             [InlineKeyboardButton(text = 'Basilicata',callback_data = 'Basilicata')],
+            [InlineKeyboardButton(text = 'Abruzzo',callback_data = 'Abruzzo')],
+            [InlineKeyboardButton(text = 'Basilicata',callback_data = 'Basilicata')],
             [InlineKeyboardButton(text = 'Calabria',callback_data = 'Calabria')],
             [InlineKeyboardButton(text = 'Campania',callback_data = 'Campania')],
             [InlineKeyboardButton(text = 'Emilia Romagna',callback_data = 'Emilia_Romagna')],
