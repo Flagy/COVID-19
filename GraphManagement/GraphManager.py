@@ -12,7 +12,7 @@ class GraphManager():
         self.data["data"] = self.data["data"].replace(to_replace=r'\s(.*)', value='', regex=True)
         self.conversionDict={"Ricoverati con sintomi":"ricoverati_con_sintomi","Terapia intensiva":"terapia_intensiva","Totale ospedalizzati":"totale_ospedalizzati",
                 "Isolamento domiciliare":"isolamento_domiciliare" , "Totale attualmente positivi":"totale_attualmente_positivi",
-                             "Nuovi attualmente positivi":"nuovi_attualmente_positivi","Dismessi guariti":"dimessi_guariti",
+                             "Nuovi attualmente positivi":"nuovi_attualmente_positivi","Dimessi guariti":"dimessi_guariti",
                              "Deceduti":"deceduti","Totale casi":"totale_casi","Tamponi":"tamponi"}
     def printData(self,param):
         try:

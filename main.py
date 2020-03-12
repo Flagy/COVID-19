@@ -14,30 +14,32 @@ from GraphManagement.GraphManager import GraphManager
 
 listOfRegions=['Abruzzo','Basilicata','Calabria','Campania','Emilia_Romagna','Friuli_Venezia_Giulia','Friuli_Venezia_Giulia','Lazio','Liguria',
                'Lombardia','Marche','Molise','Piemonte','Puglia','Sardegna','Sicilia','Toscana','Trentino_Alto_Adige','Umbria','Valle_D_Aosta','Veneto']
-listOfGraphs=["Ricoverati con sintomi","Terapia intensiva",'Totale ospedalizzati', "Isolamento domiciliare", 'Totale attualmente positivi', "Nuovi attualmente positivi",'Dismessi guariti',
+listOfGraphs=["Ricoverati con sintomi","Terapia intensiva",'Totale ospedalizzati', "Isolamento domiciliare", 'Totale attualmente positivi', "Nuovi attualmente positivi",'Dimessi guariti',
               'Deceduti','Totale casi','Tamponi']
+listOfStats = ["Percentuale guarigioni","Percentuale dimessi","Percentuale ricoverati","Percentuale decessi"]
 mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Testuali',callback_data = 'textualData')],
             [InlineKeyboardButton(text = 'Grafiche',callback_data = 'Images')],
-[InlineKeyboardButton(text = 'Andamenti',callback_data = 'Andamenti')],])
+            [InlineKeyboardButton(text = 'Andamenti',callback_data = 'Andamenti')],
+            [InlineKeyboardButton(text = 'Statistiche',callback_data = 'Statistiche')]])
+
 data=DocManager().update()
 mappe=MapManagementClass(data)
 grafi=GraphManager()
+
 
 def getDataFromJson(url):
     data = requests.get(url)
     jsonData = data.json()
     return jsonData
 
-def json2dict(jsonData):
-    pass
 
 def on_chat_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     pprint(msg)
-    if content_type == 'text':
-        
+    if content_type == 'text':    
         bot.sendMessage(chat_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
+
 
 def on_callback_query(msg):
     query_id, from_id, query_data = telepot.glance(msg, flavor = 'callback_query')
@@ -48,6 +50,7 @@ def on_callback_query(msg):
             msg_str += str(key) + ': ' + str(value) +'\n'
         bot.sendMessage(from_id, msg_str)
         bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
+    
     elif query_data=="Images":
          keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Abruzzo',callback_data = 'Abruzzo')],
@@ -72,37 +75,45 @@ def on_callback_query(msg):
             [InlineKeyboardButton(text = 'Veneto',callback_data = 'Veneto')]
             ])
          bot.sendMessage(from_id, "Seleziona la regione:", reply_markup = keyboard)
+    
     elif query_data=="Andamenti":
         keyboardGraph = InlineKeyboardMarkup(inline_keyboard=[
-
             [InlineKeyboardButton(text="Ricoverati con sintomi", callback_data="Ricoverati con sintomi")],
             [InlineKeyboardButton(text="Terapia intensiva", callback_data="Terapia intensiva")],
             [InlineKeyboardButton(text='Totale ospedalizzati', callback_data='Totale ospedalizzati')],
             [InlineKeyboardButton(text='Isolamento domiciliare', callback_data='Isolamento domiciliare')],
             [InlineKeyboardButton(text='Totale attualmente positivi', callback_data='Totale attualmente positivi')],
             [InlineKeyboardButton(text='Nuovi attualmente positivi', callback_data='Nuovi attualmente positivi')],
-            [InlineKeyboardButton(text='Dismessi guariti', callback_data='Dismessi guariti')],
+            [InlineKeyboardButton(text='Dimessi guariti', callback_data='Dimessi guariti')],
             [InlineKeyboardButton(text='Deceduti', callback_data="Deceduti")],
             [InlineKeyboardButton(text="Totale casi", callback_data="Totale casi")],
             [InlineKeyboardButton(text='Tamponi', callback_data='Tamponi')]
         ])
         bot.sendMessage(from_id, "Quale grafico vuoi visualizzare:", reply_markup=keyboardGraph)
+    
+    elif query_data == "Statistiche":
+        pguar = "Percentuale guarigioni: " + str("{0:.2f}".format(jsonData[-1]["dimessi_guariti"]/jsonData[-1]["totale_casi"]*100)) + "%\n"
+        pint = "Percentuale terapia intensiva: " + str("{0:.2f}".format(jsonData[-1]["terapia_intensiva"]/jsonData[-1]["totale_casi"]*100)) + "%\n"
+        pric = "Percentuale ricoverati: " + str("{0:.2f}".format(jsonData[-1]["ricoverati_con_sintomi"]/jsonData[-1]["totale_casi"]*100)) + "%\n"
+        pdec = "Percentuale decessi: " + str("{0:.2f}".format(jsonData[-1]["deceduti"]/jsonData[-1]["totale_casi"]*100)) + "%\n"
+        bot.sendMessage(from_id, pguar + pint + pric + pdec, reply_markup=mainKeyboard)
+
     elif query_data in listOfGraphs:
-        path=grafi.printData(query_data)
-        if path!='Not Valid Param':
+        path = grafi.printData(query_data)
+        if path != "Not Valid Param":
             bot.sendPhoto(from_id, open(path, 'rb'))
             bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
+    
         else:
             bot.sendMessage(from_id, "Scelta non valida")
             bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
-
-
 
     elif query_data in listOfRegions:
         path=mappe.getImage(query_data)
         bot.sendPhoto(from_id, open(path,'rb'))
         bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
-                
+
+
     else:
         bot.sendMessage(from_id, "Scelta non valida")
         
