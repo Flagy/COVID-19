@@ -5,6 +5,7 @@ cryptography
 pandas
 matplotlib
 geopandas
-fiona==1.7.8
+
+descartes
 pprint
 descartes

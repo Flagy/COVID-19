@@ -36,7 +36,7 @@ def on_chat_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     pprint(msg)
     if content_type == 'text':
-        
+
         bot.sendMessage(chat_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
 
 def on_callback_query(msg):
@@ -102,22 +102,22 @@ def on_callback_query(msg):
         path=mappe.getImage(query_data)
         bot.sendPhoto(from_id, open(path,'rb'))
         bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
-                
+
     else:
         bot.sendMessage(from_id, "Scelta non valida")
-        
+
 
 if __name__ == "__main__":
-    
-    TOKEN = 
+
+    TOKEN =
     #os.environ.get('API_TOKEN', None)
+
     print(TOKEN)
-    
+
     urlNationalData = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json"
     jsonData = getDataFromJson(urlNationalData)
     bot = telepot.Bot(TOKEN)
     bot.urlNationalData = urlNationalData
-    
+
     MessageLoop(bot, {'chat':on_chat_message,'callback_query':on_callback_query}).run_forever()
     print('Listening...')
-
