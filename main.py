@@ -23,10 +23,6 @@ mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Andamenti',callback_data = 'Andamenti')],
             [InlineKeyboardButton(text = 'Statistiche',callback_data = 'Statistiche')]])
 
-data=DocManager().update()
-mappe=MapManagementClass(data)
-grafi=GraphManager()
-
 
 def getDataFromJson(url):
     data = requests.get(url)
@@ -45,14 +41,21 @@ def on_callback_query(msg):
     query_id, from_id, query_data = telepot.glance(msg, flavor = 'callback_query')
     print('Callback query:',query_id, from_id, query_data)
     if query_data == "textualData":
-        msg_str = ""
-        for key, value in jsonData[-1].items():
-            msg_str += str(key) + ': ' + str(value) +'\n'
-        bot.sendMessage(from_id, msg_str)
-        bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
+        keyboardItalyOrRegions = InlineKeyboardMarkup(inline_keyboard=[
+            InlineKeyboardButton(text="Italia", callback_data="Italia"),
+            InlineKeyboardButton(text="Scegli regione", callback_data="regione")
+        ])
+        if(query_id=="Italia"):
+            msg_str = ""
+            for key, value in jsonData[-1].items():
+                msg_str += str(key) + ': ' + str(value) +'\n'
+            bot.sendMessage(from_id, msg_str)
+        else:
+            bot.sendMessage(from_id, "Ciao")
+
     
     elif query_data=="Images":
-         keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        keyboardRegions = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Abruzzo',callback_data = 'Abruzzo')],
             [InlineKeyboardButton(text = 'Basilicata',callback_data = 'Basilicata')],
             [InlineKeyboardButton(text = 'Calabria',callback_data = 'Calabria')],
@@ -74,7 +77,7 @@ def on_callback_query(msg):
             [InlineKeyboardButton(text = "Valle D'Aosta",callback_data = 'Valle_D_Aosta')],
             [InlineKeyboardButton(text = 'Veneto',callback_data = 'Veneto')]
             ])
-         bot.sendMessage(from_id, "Seleziona la regione:", reply_markup = keyboard)
+        bot.sendMessage(from_id, "Seleziona la regione:", reply_markup = keyboardRegions)
     
     elif query_data=="Andamenti":
         keyboardGraph = InlineKeyboardMarkup(inline_keyboard=[
@@ -122,12 +125,21 @@ if __name__ == "__main__":
     
     TOKEN = sys.argv[1]
     print(TOKEN)
-    
+    data = DocManager().update()
+    mappe = MapManagementClass(data)
+    grafi = GraphManager()
     urlNationalData = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json"
     jsonData = getDataFromJson(urlNationalData)
     bot = telepot.Bot(TOKEN)
     bot.urlNationalData = urlNationalData
     
-    MessageLoop(bot, {'chat':on_chat_message,'callback_query':on_callback_query}).run_forever()
+    MessageLoop(bot, {'chat':on_chat_message,'callback_query':on_callback_query}).run_as_thread()
     print('Listening...')
+
+    while 1:
+        time.sleep(100)
+        jsonData = getDataFromJson(urlNationalData)
+        data = DocManager().update()
+        mappe = MapManagementClass(data)
+        grafi = GraphManager()
 
