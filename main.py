@@ -120,7 +120,7 @@ def on_callback_query(msg):
 
 if __name__ == "__main__":
     
-    TOKEN = "1097804080:AAHCv4KgmI6fz1nZcRPzNoR0qO1yZEuiQ_8"
+    TOKEN = sys.argv[1]
     print(TOKEN)
     
     urlNationalData = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json"
