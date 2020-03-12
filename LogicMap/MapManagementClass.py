@@ -55,15 +55,18 @@ class MapManagementClass():
         list_of_province=[]
         k=0
         for i in self.data['totale_casi']:
-            patch=mpatches.Patch( edgecolor="w", facecolor="w", color="w",label=str(i)+ " : "+legenda[k])
+            patch=mpatches.Patch( edgecolor="w", facecolor="w", color="w",label=str(int(i))+ " : "+legenda[k])
             k=k+1
             list_of_province.append(patch)
         box = ax.get_position()
         ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
         ax.legend(loc='center left', bbox_to_anchor=(1, 0.5),handles=list_of_province)
+        logo=plt.imread('./logobot.jpeg')
         lista_indici= pd.DataFrame(list(legenda.keys()))
-        for x, y, label,num_casi in zip(self.data["long"],self.data["lat"] ,lista_indici[0],self.data['totale_casi'].apply(str)):
-            ax.annotate(num_casi, xy=(x, y), xytext=(-10, 0), textcoords="offset points",weight='bold',fontsize=10)
+        for x, y, label, num_casi in zip(self.data["long"],self.data["lat"] ,lista_indici[0],self.data['totale_casi']):
+            ax.annotate(int(num_casi), xy=(x, y), xytext=(-10, 0), textcoords="offset points",weight='bold',fontsize=10)
+        ax.figure.figimage(logo, 5, 5, alpha=1, zorder=1)
         gdf.plot(ax=ax, color='#f97d77', markersize=self.data['totale_casi'])
+                 
         plt.savefig('LogicMap/temp/temp_1.png', dpi=199)
         return('./LogicMap/temp/temp_1.png')

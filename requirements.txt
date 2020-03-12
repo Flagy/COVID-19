@@ -1,7 +1,10 @@
 requests
+
 telepot
 cryptography
 pandas
 matplotlib
 geopandas
+fiona==1.7.8
 pprint
+descartes
