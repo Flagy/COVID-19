@@ -109,7 +109,7 @@ def on_callback_query(msg):
 
 if __name__ == "__main__":
     
-    TOKEN = "1142245923:AAG1ZFHUeeWQPeeYtL6Wl-zkGu8NB7rQgYU"
+    TOKEN = 
         #os.environ.get('API_TOKEN', None)
     print(TOKEN)
     
