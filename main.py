@@ -24,8 +24,7 @@ listConfronts = ["tamponi","totale_attualmente_positivi", "deceduti", "nuovi_att
 mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Testuali',callback_data = 'textualData')],
             [InlineKeyboardButton(text = 'Grafiche',callback_data = 'Images')],
-[InlineKeyboardButton(text = 'Andamenti',callback_data = 'Andamenti')],
-[InlineKeyboardButton(text = 'Infografiche',callback_data = 'Infografiche')],])
+            [InlineKeyboardButton(text = 'Infografiche',callback_data = 'Infografiche')],
             [InlineKeyboardButton(text = 'Andamenti',callback_data = 'Andamenti')],
             [InlineKeyboardButton(text = 'Confronto regioni',callback_data = 'Confronto')],
             [InlineKeyboardButton(text = 'Statistiche',callback_data = 'Statistiche')]])
@@ -58,7 +57,7 @@ def on_callback_query(msg):
             msg_str += str(key) + ': ' + str(value) +'\n'
         bot.sendMessage(from_id, msg_str)
         bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
-        
+
     elif query_data=="Infografiche":
         paths=rete.getPath()
         for path in paths:
@@ -77,6 +76,7 @@ def on_callback_query(msg):
 
     elif query_data in listConfronts:
         bot.sendPhoto(from_id, open(confronto.getBarplot1param(query_data), 'rb'))
+        bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
 
     elif query_data=="Images":
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
