@@ -10,6 +10,7 @@ import os
 from LogicMap.MapManagementClass import MapManagementClass
 from LogicMap.DocManager import DocManager
 from GraphManagement.GraphManager import GraphManager
+from GraphManagement.AdvancedGraphManager import AdvancedGraphManager
 
 
 listOfRegions=['Abruzzo','Basilicata','Calabria','Campania','Emilia_Romagna','Friuli_Venezia_Giulia','Friuli_Venezia_Giulia','Lazio','Liguria',
@@ -19,10 +20,12 @@ listOfGraphs=["Ricoverati con sintomi","Terapia intensiva",'Totale ospedalizzati
 mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Testuali',callback_data = 'textualData')],
             [InlineKeyboardButton(text = 'Grafiche',callback_data = 'Images')],
-[InlineKeyboardButton(text = 'Andamenti',callback_data = 'Andamenti')],])
+[InlineKeyboardButton(text = 'Andamenti',callback_data = 'Andamenti')],
+[InlineKeyboardButton(text = 'Infografiche',callback_data = 'Infografiche')],])
 data=DocManager().update()
 mappe=MapManagementClass(data)
 grafi=GraphManager()
+rete=AdvancedGraphManager()
 
 def getDataFromJson(url):
     data = requests.get(url)
@@ -48,6 +51,12 @@ def on_callback_query(msg):
             msg_str += str(key) + ': ' + str(value) +'\n'
         bot.sendMessage(from_id, msg_str)
         bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
+    elif query_data=="Infografiche":
+        paths=rete.getPath()
+        for path in paths:
+            bot.sendPhoto(from_id, open(path, 'rb'))
+        bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
+            
     elif query_data=="Images":
          keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Abruzzo',callback_data = 'Abruzzo')],
@@ -109,10 +118,11 @@ def on_callback_query(msg):
 
 if __name__ == "__main__":
 
-    TOKEN =
+    TOKEN ="1142245923:AAG1ZFHUeeWQPeeYtL6Wl-zkGu8NB7rQgYU"
     #os.environ.get('API_TOKEN', None)
 
     print(TOKEN)
+    
 
     urlNationalData = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json"
     jsonData = getDataFromJson(urlNationalData)
