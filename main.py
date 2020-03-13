@@ -10,6 +10,7 @@ import os
 from LogicMap.MapManagementClass import MapManagementClass
 from LogicMap.DocManager import DocManager
 from GraphManagement.GraphManager import GraphManager
+from GraphManagement.AdvancedGraphManager import AdvancedGraphManager
 
 
 listOfRegions=['Abruzzo','Basilicata','Calabria','Campania','Emilia_Romagna','Friuli_Venezia_Giulia','Friuli_Venezia_Giulia','Lazio','Liguria',
@@ -20,12 +21,15 @@ listOfStats = ["Percentuale guarigioni","Percentuale dimessi","Percentuale ricov
 mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Testuali',callback_data = 'textualData')],
             [InlineKeyboardButton(text = 'Grafiche',callback_data = 'Images')],
+[InlineKeyboardButton(text = 'Andamenti',callback_data = 'Andamenti')],
+[InlineKeyboardButton(text = 'Infografiche',callback_data = 'Infografiche')],])
             [InlineKeyboardButton(text = 'Andamenti',callback_data = 'Andamenti')],
             [InlineKeyboardButton(text = 'Statistiche',callback_data = 'Statistiche')]])
 
 data=DocManager().update()
 mappe=MapManagementClass(data)
 grafi=GraphManager()
+rete=AdvancedGraphManager()
 
 
 def getDataFromJson(url):
@@ -50,7 +54,12 @@ def on_callback_query(msg):
             msg_str += str(key) + ': ' + str(value) +'\n'
         bot.sendMessage(from_id, msg_str)
         bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
-    
+    elif query_data=="Infografiche":
+        paths=rete.getPath()
+        for path in paths:
+            bot.sendPhoto(from_id, open(path, 'rb'))
+        bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
+            
     elif query_data=="Images":
          keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Abruzzo',callback_data = 'Abruzzo')],
@@ -113,21 +122,20 @@ def on_callback_query(msg):
         bot.sendPhoto(from_id, open(path,'rb'))
         bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
 
-
     else:
         bot.sendMessage(from_id, "Scelta non valida")
-        
+
 
 if __name__ == "__main__":
     
     TOKEN = sys.argv[1]
     print(TOKEN)
     
+
     urlNationalData = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json"
     jsonData = getDataFromJson(urlNationalData)
     bot = telepot.Bot(TOKEN)
     bot.urlNationalData = urlNationalData
-    
+
     MessageLoop(bot, {'chat':on_chat_message,'callback_query':on_callback_query}).run_forever()
     print('Listening...')
-
