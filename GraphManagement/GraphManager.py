@@ -17,9 +17,11 @@ class GraphManager():
     def printData(self,param):
         try:
             print(self.conversionDict[param])
-            self.data.plot(kind='line',x='data',y=self.conversionDict[param],color='red')
+            ax=self.data.plot(kind='line',x='data',y=self.conversionDict[param],color='red')
 
             plt.title("Andamento "+param)
+            logo=plt.imread('./logobot.jpeg')
+            ax.figure.figimage(logo, 3, 3, alpha=0.7, zorder=1)
             plt.xticks(rotation=90)
             plt.savefig('./GraphManagement/tempGraph/temp_1.png', bbox_inches = "tight",dpi=199)
             return('./GraphManagement/tempGraph/temp_1.png')
