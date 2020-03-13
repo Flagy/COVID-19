@@ -18,11 +18,11 @@ def loadData():
     filepath="dati-province/dpc-covid19-ita-province-20200308.csv"
     data = pd.read_csv(filepath,encoding = "ISO-8859-1") 
     return data
+
 dat=loadData()
 dat = dat[dat["lat"] > 0 ]
 dat=dat[dat["casi_totali"]>0]
 dat=dat[dat["denominazione_regione"]=="Lombardia"]
-    
     
 
 gdf = geopandas.GeoDataFrame(
