@@ -1,6 +1,6 @@
 import numpy as np
+import matplotlib.image as image
 import matplotlib.pyplot as plt
-from matplotlib import rc
 import requests
 
 
@@ -11,11 +11,8 @@ class ConfrontoManager(object):
         self.regioniOggi = self.data.json()[-21:] 
 
     def getBarplot1param(self, param):
-        # y-axis in bold
-        rc('font', weight='bold')
         
         # Values of each group
-        param = 'deceduti'
         bar = []
         pos = []
         names = []
@@ -25,28 +22,44 @@ class ConfrontoManager(object):
             pos.append(region["codice_regione"])
             names.append(region["denominazione_regione"])
         
+        # Name correction
+        for i in range(len(names)):
+            if names[i] == "Friuli Venezia Giulia":
+                names[i] = "Friuli"
+            elif names[i] == "Emilia Romagna":
+                names[i] = "Emilia"
+            elif names[i] == "P.A. Bolzano":
+                posblz = i
+            elif names[i] == "P.A. Trento":
+                postrnt = i
+        names[posblz] = "Trentino"
+        names[postrnt] = "Trentino"
+        bar[posblz] = bar[posblz] + bar[postrnt]
+        bar[postrnt] = 0
 
         # Heights of bars1 + bars2
         barWidth = 1
         
         # Create green bars
-        plt.bar(pos, bar, color='#557f2d', edgecolor='white', width=barWidth)
+        fig, ax = plt.subplots()
+        logo = image.imread('./logobot.jpeg')
+        ax.yaxis.tick_left()
+        ax.tick_params(axis='y', colors='black')
+        ax.tick_params(axis='x', colors='black')
+        plt.xticks(pos, names, rotation='vertical')
+        plt.gcf().subplots_adjust(bottom=0.2)
+        ax.bar(pos, bar, color=np.random.rand(3,), edgecolor='white', width=barWidth)
 
         # Custom X axis
-        plt.xticks(pos, names, rotation='vertical')
-        plt.xlabel("group")
+        plt.xlabel("Regioni")
         plt.ylabel(param)
-        plt.legend() 
+        ax.figure.figimage(logo, 5, 5, alpha=1, zorder=1)
+        plt.savefig("./ConfrontiTraRegioni/tmp/img.png", bbox_inches = "tight", dpi=199)
         # Show graphic
-        return(plt)
+        return("./ConfrontiTraRegioni/tmp/img.png")
 
-    def getBarplot2param(self, param):
-        # y-axis in bold
-        rc('font', weight='bold')
-        
-        # Values of each group
-        param1 = 'deceduti'
-        param2 = ''
+    def getBarplot2param(self, param1, param2):
+
         bar1 = []
         bar2 = []
         pos = []
@@ -63,17 +76,22 @@ class ConfrontoManager(object):
         barWidth = 1
         
         # Create  bars
-        plt.bar(pos, bar1, color='#7f6d5f', edgecolor='white', width=barWidth)
-        plt.bar(pos, bar2, bottom=bars, color='#557f2d', edgecolor='white', width=barWidth)
+        fig, ax = plt.subplots()
+        logo = image.imread('./logobot.jpeg')
+        ax.imshow(logo, aspect='auto', extent=(0.4, 0.6, .5, .7), zorder=-1)
+        ax.yaxis.tick_left()
+        ax.tick_params(axis='y', colors='black', labelsize=15)
+        ax.tick_params(axis='x', colors='black', labelsize=15)
+        plt.xticks(pos, names, rotation = 45)
+        ax.bar(pos, bar1, color='#7f6d5f', edgecolor='white', width=barWidth)
+        ax.bar(pos, bar2, bottom=bars, color='#557f2d', edgecolor='white', width=barWidth)
 
         # Custom X axis
-        plt.xticks(pos, names, rotation='vertical')
-        logo=plt.imread('./logobot.jpeg')
-        plt.figure.figimage(logo, 5, 5, alpha=1, zorder=1)
+        
         plt.xlabel("group")
         plt.ylabel(param1 + '/' + param2)
-        plt.legend() 
         plt.show()
+        plt.savefig("./ConfrontiTraRegioni/tmp/img.png", bbox_inches = "tight", dpi=199)
         # Show graphic
         return(plt)
 

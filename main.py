@@ -65,9 +65,7 @@ def on_callback_query(msg):
         bot.sendMessage(from_id, text="Cosa vuoi visualizzare?", reply_markup = confrontoKeyboard)
 
     elif query_data in listConfronts:
-        result = confronto.getBarplot1param(query_data)
-        bot.sendPhoto(from_id, result.show())
-        result.close()
+        bot.sendPhoto(from_id, open(confronto.getBarplot1param(query_data), 'rb'))
 
     elif query_data=="Images":
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -138,7 +136,7 @@ def on_callback_query(msg):
 
 if __name__ == "__main__":
     
-    TOKEN = sys.argv[1]
+    TOKEN = "1097804080:AAHCv4KgmI6fz1nZcRPzNoR0qO1yZEuiQ_8"
     print(TOKEN)
     
     urlNationalData = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json"
