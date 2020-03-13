@@ -68,9 +68,12 @@ class ConfrontoManager(object):
 
         # Custom X axis
         plt.xticks(pos, names, rotation='vertical')
+        logo=plt.imread('./logobot.jpeg')
+        plt.figure.figimage(logo, 5, 5, alpha=1, zorder=1)
         plt.xlabel("group")
         plt.ylabel(param1 + '/' + param2)
         plt.legend() 
+        plt.show()
         # Show graphic
         return(plt)
 

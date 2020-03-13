@@ -11,7 +11,7 @@ from ConfrontiTraRegioni.confronti import ConfrontoManager
 from LogicMap.MapManagementClass import MapManagementClass
 from LogicMap.DocManager import DocManager
 from GraphManagement.GraphManager import GraphManager
-
+import matplotlib.pyplot as plt
 
 listOfRegions=['Abruzzo','Basilicata','Calabria','Campania','Emilia_Romagna','Friuli_Venezia_Giulia','Friuli_Venezia_Giulia','Lazio','Liguria',
                'Lombardia','Marche','Molise','Piemonte','Puglia','Sardegna','Sicilia','Toscana','Trentino_Alto_Adige','Umbria','Valle_D_Aosta','Veneto']
@@ -62,8 +62,13 @@ def on_callback_query(msg):
             [InlineKeyboardButton(text = 'Nuovi positivi',callback_data = 'nuovi_attualmente_positivi')],
             [InlineKeyboardButton(text = 'Ospedalizzati',callback_data = 'totale_ospedalizzati')],
             [InlineKeyboardButton(text = 'Totale casi',callback_data = 'totale_casi')]])
+        bot.sendMessage(from_id, text="Cosa vuoi visualizzare?", reply_markup = confrontoKeyboard)
+
     elif query_data in listConfronts:
-        bot.sendPhoto(from_id, plt.show())
+        result = confronto.getBarplot1param(query_data)
+        bot.sendPhoto(from_id, result.show())
+        result.close()
+
     elif query_data=="Images":
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Abruzzo',callback_data = 'Abruzzo')],
