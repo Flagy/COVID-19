@@ -12,6 +12,8 @@ from LogicMap.MapManagementClass import MapManagementClass
 from LogicMap.DocManager import DocManager
 from GraphManagement.GraphManager import GraphManager
 from GraphManagement.AdvancedGraphManager import AdvancedGraphManager
+import json
+import codecs
 
 import matplotlib.pyplot as plt
 
@@ -37,8 +39,8 @@ rete = AdvancedGraphManager()
 
 def getDataFromJson(url):
     data = requests.get(url)
-    jsonData = data.json()
-    return jsonData
+    decoded_data = json.loads(codecs.decode(data.text.encode(), 'utf-8-sig'))
+    return decoded_data
 
 
 def on_chat_message(msg):
