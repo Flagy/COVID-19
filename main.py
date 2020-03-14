@@ -31,11 +31,11 @@ mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Confronto regioni',callback_data = 'Confronto')],
             [InlineKeyboardButton(text = 'Statistiche',callback_data = 'Statistiche')]])
 
-data = DocManager().update()
+"""data = DocManager().update()
 mappe = MapManagementClass(data)
 grafi = GraphManager()
 confronto = ConfrontoManager()
-rete = AdvancedGraphManager()
+rete = AdvancedGraphManager()"""
 info = TxtManager()
 
 def getDataFromJson(url):
@@ -75,14 +75,14 @@ def on_callback_query(msg):
     query_id, from_id, query_data = telepot.glance(msg, flavor = 'callback_query')
     print('Callback query:',query_id, from_id, query_data)
     if query_data == "textualData":
-        msg_str = info.textualInfoItaly()
+        msg_str = info.textualInfoItaly(jsonData)
         bot.sendMessage(from_id, msg_str)
         bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
 
 
 if __name__ == "__main__":
     
-    TOKEN = sys.argv[1]
+    TOKEN = "1097804080:AAHCv4KgmI6fz1nZcRPzNoR0qO1yZEuiQ_8"
     print(TOKEN)
     
     
