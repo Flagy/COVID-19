@@ -1,5 +1,6 @@
 import requests
 from pandas.io.json import json_normalize
+import codecs
 import json
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -8,7 +9,8 @@ class GraphManager():
     def __init__(self):
         self.url="https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json"
         r = requests.get(self.url)
-        self.data=json_normalize(json.loads(r.text))
+        decoded_data = codecs.decode(r.text.encode(), 'utf-8-sig')
+        self.data=json_normalize(json.loads(decoded_data))
         self.data["data"] = self.data["data"].replace(to_replace=r'\s(.*)', value='', regex=True)
         self.conversionDict={"Ricoverati con sintomi":"ricoverati_con_sintomi","Terapia intensiva":"terapia_intensiva","Totale ospedalizzati":"totale_ospedalizzati",
                 "Isolamento domiciliare":"isolamento_domiciliare" , "Totale attualmente positivi":"totale_attualmente_positivi",

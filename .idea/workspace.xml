@@ -2,91 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d3b2fcc-5a0d-4a17-b05f-6ed9dd77cd9c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/GraphManagement/GraphManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicMap/MapManagementClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/LogicMap/MapManagementClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicMap/temp/temp_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/LogicMap/temp/temp_1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="16" column="55" lean-forward="true" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#331#613#0" />
-                <element signature="e#1809#3507#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LogicMap/MapManagementClass.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LogicMap/DocManager.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="38" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LogicMap/fromJSONManager.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GraphManagement/GraphManager.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
-              <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/LogicMap/MapManagementClass.py" />
-        <option value="$PROJECT_DIR$/GraphManagement/GraphManager.py" />
-        <option value="$PROJECT_DIR$/main.py" />
-      </list>
-    </option>
   </component>
   <component name="ProjectConfigurationFiles">
     <option name="files">
@@ -98,38 +22,14 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="978" />
-    <option name="height" value="1060" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="COVID-19" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COVID-19" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COVID-19" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COVID-19" type="462c0819:PsiDirectoryNode" />
-              <item name="LogicMap" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectId" id="1Z565pVqMp9GiVQ5haqqfnPcVDJ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/main.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -137,24 +37,13 @@
       <recent name="C:\Users\frana\Documents\GitHub\COVID-19\GraphManagement" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="COVID-19" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
         <env name="API_TOKEN" value="1142245923:AAG1ZFHUeeWQPeeYtL6Wl-zkGu8NB7rQgYU  " />
       </envs>
       <option name="SDK_HOME" value="C:\Users\frana\Anaconda3\python.exe" />
@@ -177,7 +66,8 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="API_TOKEN" value="1142245923:AAG1ZFHUeeWQPeeYtL6Wl-zkGu8NB7rQgYU  " />
+        <env name="API_TOKEN" value="1142245923:AAG1ZFHUeeWQPeeYtL6Wl-zkGu8NB7rQgYU" />
+        <env name="MPLLOCALFREETYPE" value="1  " />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -205,85 +95,131 @@
       <option name="presentableId" value="Default" />
       <updated>1583942280980</updated>
     </task>
+    <task id="LOCAL-00001" summary="Delete double inline keyboard field">
+      <created>1584117159131</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1584117159131</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Nuovacodificaper json in graph manager">
+      <created>1584211493075</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1584211493075</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Nuovacodifica per json in confronti">
+      <created>1584211847499</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1584211847499</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25033024" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" weight="0.32914925" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32914925" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39888424" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Delete double inline keyboard field" />
+    <MESSAGE value="Nuovacodificaper json in graph manager" />
+    <MESSAGE value="Nuovacodifica per json in confronti" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nuovacodifica per json in confronti" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/LogicMap/MapManagement.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LogicMap/fromJSONManager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LogicMap/DocManager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GraphManagement/GraphManager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LogicMap/MapManagementClass.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="16" column="55" lean-forward="true" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#331#613#0" />
-            <element signature="e#1809#3507#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="552" y="178" key="#Notifications" timestamp="1584123460245">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#Notifications/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584123460245" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584119972068">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584119972067" />
+    <state x="691" y="134" key="#main" timestamp="1584116705445">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="691" y="134" key="#main/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584116705445" />
+    <state x="148" y="273" key="#xdebugger.XInspectDialog" timestamp="1584123817497">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="148" y="273" key="#xdebugger.XInspectDialog/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584123817497" />
+    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1584211846739">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584211846739" />
+    <state x="184" y="86" key="DiffContextDialog" timestamp="1584211077851">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584211077851" />
+    <state x="739" y="274" key="FileChooserDialogImpl" timestamp="1584116724553">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="739" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584116724553" />
+    <state width="1899" height="346" key="GridCell.Tab.0.bottom" timestamp="1584120123678">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="346" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584120123678" />
+    <state width="1899" height="346" key="GridCell.Tab.0.center" timestamp="1584120123678">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="346" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584120123678" />
+    <state width="1899" height="346" key="GridCell.Tab.0.left" timestamp="1584120123678">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="346" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584120123678" />
+    <state width="1899" height="346" key="GridCell.Tab.0.right" timestamp="1584120123678">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="346" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584120123678" />
+    <state width="1899" height="346" key="GridCell.Tab.1.bottom" timestamp="1584120123678">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="346" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584120123678" />
+    <state width="1899" height="346" key="GridCell.Tab.1.center" timestamp="1584120123678">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="346" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584120123678" />
+    <state width="1899" height="346" key="GridCell.Tab.1.left" timestamp="1584120123678">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="346" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584120123678" />
+    <state width="1899" height="346" key="GridCell.Tab.1.right" timestamp="1584120123678">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="346" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584120123678" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1584123409733">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584123409733" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1584211453515">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584211453515" />
+    <state x="482" y="225" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1584123468507">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="482" y="225" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584123468507" />
+    <state x="661" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1584210897736">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="661" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584210897736" />
+    <state x="673" y="311" key="git4idea.merge.GitPullDialog" timestamp="1584211088048">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="673" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584211088048" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/GraphManagement/AdvancedGraphManager.py</url>
+          <line>1</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
