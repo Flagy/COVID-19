@@ -9,11 +9,11 @@ import json
 from pprint import pprint
 import os
 from TextManagement.TxtManager import TxtManager
-"""from ConfrontiTraRegioni.confronti import ConfrontoManager
+from ConfrontiTraRegioni.confronti import ConfrontoManager
 from LogicMap.MapManagementClass import MapManagementClass
 from LogicMap.DocManager import DocManager
 from GraphManagement.GraphManager import GraphManager
-from GraphManagement.AdvancedGraphManager import AdvancedGraphManager"""
+from GraphManagement.AdvancedGraphManager import AdvancedGraphManager
 
 import matplotlib.pyplot as plt
 
@@ -31,11 +31,11 @@ mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Confronto regioni',callback_data = 'Confronto')],
             [InlineKeyboardButton(text = 'Statistiche',callback_data = 'Statistiche')]])
 
-"""data = DocManager().update()
+data = DocManager().update()
 mappe = MapManagementClass(data)
 grafi = GraphManager()
 confronto = ConfrontoManager()
-rete = AdvancedGraphManager()"""
+rete = AdvancedGraphManager()
 info = TxtManager()
 
 def getDataFromJson(url):
@@ -82,7 +82,7 @@ def on_callback_query(msg):
 
 if __name__ == "__main__":
     
-    TOKEN = "1097804080:AAHCv4KgmI6fz1nZcRPzNoR0qO1yZEuiQ_8"
+    TOKEN = sys.argv[1]
     print(TOKEN)
     
     
