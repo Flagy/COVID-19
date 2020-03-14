@@ -4,13 +4,15 @@ import json
 from pandas.io.json import json_normalize
 import geopandas
 import matplotlib.pyplot as plt
+import codecs
 import sys
 from PIL import Image
 class AdvancedGraphManager():
     def __init__(self):
         url="https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
         r = requests.get(url)
-        self.data=json_normalize(json.loads(r.text))
+        decoded_data = codecs.decode(r.text.encode(), 'utf-8-sig')
+        self.data=json_normalize(json.loads(decoded_data))
         self.paramsFirst={"ricoverati_con_sintomi":"#ebd534","terapia_intensiva":"#28de9e","totale_ospedalizzati":"#177b99","isolamento_domiciliare":"#997917"}
         self.paramsSecond={"totale_attualmente_positivi":"#a86b32","nuovi_attualmente_positivi":"#245e69","dimessi_guariti":"#2bcf0e","deceduti":"#7e877c"}
         self.paramsThird={"totale_casi":"#d0f0c9","tamponi":"#555a70"}
