@@ -2,13 +2,16 @@ import numpy as np
 import matplotlib.image as image
 import matplotlib.pyplot as plt
 import requests
+import codecs
+import json
 
 
 class ConfrontoManager(object):
     def __init__(self):
         urlRegionalData = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
         self.data = requests.get(urlRegionalData)
-        self.regioniOggi = self.data.json()[-21:] 
+        decoded_data = codecs.decode(self.data.text.encode(), 'utf-8-sig')
+        self.regioniOggi = json.loads(decoded_data)[-21:]
 
     def getBarplot1param(self, param):
         
