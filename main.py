@@ -8,6 +8,7 @@ import json
 from pprint import pprint
 import os
 from ConfrontiTraRegioni.confronti import ConfrontoManager
+from TextManagement.TxtManager import TxtManager
 from LogicMap.MapManagementClass import MapManagementClass
 from LogicMap.DocManager import DocManager
 from GraphManagement.GraphManager import GraphManager
@@ -36,11 +37,33 @@ mappe = MapManagementClass(data)
 grafi = GraphManager()
 confronto = ConfrontoManager()
 rete = AdvancedGraphManager()
+info = TxtManager()
 
 def getDataFromJson(url):
     data = requests.get(url)
     decoded_data = json.loads(codecs.decode(data.text.encode(), 'utf-8-sig'))
     return decoded_data
+
+def on_inline_query(msg):
+    def compute():
+        query_id, from_id, query_string = telepot.glance(msg, flavor='inline_query')
+        print('Inline Query:', query_id, from_id, query_string)
+
+        articles = [InlineQueryResultArticle(
+                        id='txtITA',
+                        title="Ultimi dati, testo",
+                        input_message_content=InputTextMessageContent(
+                            message_text="Informazioni CoronaVirus in Italia aggiornate:\n\n"+info.textualInfoItaly(jsonData),
+                        ),
+                   )]
+
+        return articles
+
+    answerer.answer(msg, compute)
+
+def on_chosen_inline_result(msg):
+    result_id, from_id, query_string = telepot.glance(msg, flavor='chosen_inline_result')
+    print ('Chosen Inline Result:', result_id, from_id, query_string)
 
 
 def on_chat_message(msg):
@@ -158,6 +181,12 @@ if __name__ == "__main__":
     jsonRegionalData = getDataFromJson(urlRegionalData)
     bot = telepot.Bot(TOKEN)
     bot.urlNationalData = urlNationalData
+
+    answerer = telepot.helper.Answerer(bot)
+
+    MessageLoop(bot, {'chat':on_chat_message, 'callback_query':on_callback_query,
+                        'inline_query': on_inline_query,
+                        'chosen_inline_result': on_chosen_inline_result}).run_forever()
 
     MessageLoop(bot, {'chat':on_chat_message,'callback_query':on_callback_query}).run_forever()
     print('Listening...')
