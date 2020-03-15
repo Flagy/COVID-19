@@ -34,6 +34,8 @@ mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text='Infografiche Nazionali', callback_data='Infografiche')],
             [InlineKeyboardButton(text = 'Resoconto Nazionale',callback_data = 'textualData')],
             [InlineKeyboardButton(text = 'Statistiche Nazionali',callback_data = 'Statistiche')]])
+backKeyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text='Indietro', callback_data='indietro')]])
 
 data = DocManager().update()
 mappe = MapManagementClass(data)
@@ -86,6 +88,9 @@ def on_callback_query(msg):
             msg_str += str(key) + ': ' + str(value) +'\n'
         bot.sendMessage(from_id, msg_str)
         #bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
+    elif query_data=="indietro":
+        bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
+
 
     elif query_data == "moduloAutocertificazione":
         with open("AutocertificazioneBlank.pdf", "rb") as f:
@@ -95,7 +100,7 @@ def on_callback_query(msg):
         paths=rete.getPath()
         for path in paths:
             bot.sendPhoto(from_id, open(path, 'rb'))
-        #bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
+        bot.sendMessage(from_id, "Torna al menù principale", reply_markup=backKeyboard)
              
     elif query_data=="Confronto":
         confrontoKeyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -109,7 +114,7 @@ def on_callback_query(msg):
 
     elif query_data in listConfronts:
         bot.sendPhoto(from_id, open(confronto.getBarplot1param(query_data), 'rb'))
-       # bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
+        bot.sendMessage(from_id, "Torna al menù principale", reply_markup=backKeyboard)
 
     elif query_data=="Images":
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -157,24 +162,26 @@ def on_callback_query(msg):
         pric = "Percentuale ricoverati: " + str("{0:.2f}".format(jsonData[-1]["ricoverati_con_sintomi"]/jsonData[-1]["totale_casi"]*100)) + "%\n"
         pdec = "Percentuale decessi: " + str("{0:.2f}".format(jsonData[-1]["deceduti"]/jsonData[-1]["totale_casi"]*100)) + "%\n"
         bot.sendMessage(from_id, pguar + pint + pric + pdec, reply_markup=mainKeyboard)
+        bot.sendMessage(from_id, "Torna al menù principale", reply_markup=backKeyboard)
 
     elif query_data in listOfGraphs:
         path = grafi.printData(query_data)
         if path != "Not Valid Param":
             bot.sendPhoto(from_id, open(path, 'rb'))
-            #bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
+            bot.sendMessage(from_id, "Torna al menù principale", reply_markup=backKeyboard)
     
         else:
             bot.sendMessage(from_id, "Scelta non valida")
-           # bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
+            bot.sendMessage(from_id, "Torna al menù principale", reply_markup=backKeyboard)
 
     elif query_data in listOfRegions:
         path=mappe.getImage(query_data)
         bot.sendPhoto(from_id, open(path,'rb'))
-       # bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
+        bot.sendMessage(from_id, "Torna al menù principale", reply_markup=backKeyboard)
 
     else:
         bot.sendMessage(from_id, "Scelta non valida")
+        bot.sendMessage(from_id, "Torna al menù principale", reply_markup=backKeyboard)
 
 
 if __name__ == "__main__":

@@ -138,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584284926530</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Piccoli updates">
+      <created>1584285736849</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1584285736849</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -146,7 +153,8 @@
     <MESSAGE value="Nuovacodificaper json in graph manager" />
     <MESSAGE value="Nuovacodifica per json in confronti" />
     <MESSAGE value="Nuovacodifica per json in main nella funzione getdataFromJson" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nuovacodifica per json in main nella funzione getdataFromJson" />
+    <MESSAGE value="Piccoli updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Piccoli updates" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1584123460245">
@@ -165,10 +173,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="148" y="273" key="#xdebugger.XInspectDialog/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584123817497" />
-    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1584284925715">
+    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1584285736051">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584284925715" />
+    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584285736051" />
     <state x="184" y="86" key="DiffContextDialog" timestamp="1584211077851">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -213,10 +221,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584123409733" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1584284944689">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1584285765682">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584284944688" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584285765682" />
     <state x="482" y="225" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1584123468507">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
