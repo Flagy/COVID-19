@@ -20,6 +20,8 @@ import matplotlib.pyplot as plt
 
 listOfRegions=['Abruzzo','Basilicata','Calabria','Campania','Emilia_Romagna','Friuli_Venezia_Giulia','Lazio','Liguria',
                'Lombardia','Marche','Molise','Piemonte','Puglia','Sardegna','Sicilia','Toscana','Trentino_Alto_Adige','Umbria','Valle_D_Aosta','Veneto']
+listOfRegions2=['Abruzzo','Basilicata','Calabria','Campania','Emilia Romagna','Friuli Venezia Giulia','Lazio','Liguria',
+               'Lombardia','Marche','Molise','Piemonte','Puglia','Sardegna','Sicilia','Toscana','Trentino Alto Adige','Umbria',"Valle d'Aosta",'Veneto']
 listOfGraphs=["Ricoverati con sintomi","Terapia intensiva",'Totale ospedalizzati', "Isolamento domiciliare", 'Totale attualmente positivi', "Nuovi attualmente positivi",'Dimessi guariti',
               'Deceduti','Totale casi','Tamponi']
 listOfStats = ["Percentuale guarigioni","Percentuale dimessi","Percentuale ricoverati","Percentuale decessi"]
@@ -32,11 +34,11 @@ mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Confronto regioni',callback_data = 'Confronto')],
             [InlineKeyboardButton(text = 'Statistiche',callback_data = 'Statistiche')]])
 
-# data = DocManager().update()
-# mappe = MapManagementClass(data)
+data = DocManager().update()
+mappe = MapManagementClass(data)
 grafi = GraphManager()
 confronto = ConfrontoManager()
-# rete = AdvancedGraphManager()
+rete = AdvancedGraphManager()
 info = TxtManager()
 
 def getDataFromJson(url):
@@ -49,12 +51,12 @@ def on_inline_query(msg):
     def compute():
         query_id, from_id, query_string = telepot.glance(msg, flavor='inline_query')
         print('Inline Query:', query_id, from_id, query_string)
-
+        
         articles = []
         articles.append(InlineQueryResultArticle(id="idItaly", title="ITALIA",
                         input_message_content=InputTextMessageContent(
                             message_text="Informazioni CoronaVirus in ITALIA aggiornate:\n\n" + info.textualInfoItaly(jsonData))))
-        for el in listOfRegions:
+        for el in listOfRegions2:
             articles.append(InlineQueryResultArticle(id="id"+el, title=el,
                         input_message_content=InputTextMessageContent(
                             message_text="Informazioni CoronaVirus in "+el+" aggiornate:\n\n" + info.textualInfoRegion(getDataFromJson(urlRegionalData), el))))
