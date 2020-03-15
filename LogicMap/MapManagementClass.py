@@ -68,7 +68,7 @@ class MapManagementClass():
         list_of_province=[]
         k=0
         for i in self.data['totale_casi']:
-            patch=mpatches.Patch( edgecolor="w", facecolor="w", color="w",label=str(legenda[k]+ " : "+int(i)))
+            patch=mpatches.Patch( edgecolor="w", facecolor="w", color="w",label=legenda[k]+ " : "+str(int(i)))
             k=k+1
             list_of_province.append(patch)
         box = ax.get_position()
