@@ -86,7 +86,7 @@ def on_callback_query(msg):
         msg_str = ""
         for key, value in jsonData[-1].items():
             msg_str += str(key) + ': ' + str(value) +'\n'
-        bot.sendMessage(from_id, msg_str)
+        bot.sendMessage(from_id, msg_str, reply_markup=backKeyboard)
         #bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
     elif query_data=="indietro":
         bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
@@ -161,27 +161,27 @@ def on_callback_query(msg):
         pint = "Percentuale terapia intensiva: " + str("{0:.2f}".format(jsonData[-1]["terapia_intensiva"]/jsonData[-1]["totale_casi"]*100)) + "%\n"
         pric = "Percentuale ricoverati: " + str("{0:.2f}".format(jsonData[-1]["ricoverati_con_sintomi"]/jsonData[-1]["totale_casi"]*100)) + "%\n"
         pdec = "Percentuale decessi: " + str("{0:.2f}".format(jsonData[-1]["deceduti"]/jsonData[-1]["totale_casi"]*100)) + "%\n"
-        bot.sendMessage(from_id, pguar + pint + pric + pdec, reply_markup=mainKeyboard)
-        bot.sendMessage(from_id, "Torna al menù principale", reply_markup=backKeyboard)
+        bot.sendMessage(from_id, pguar + pint + pric + pdec, reply_markup=backKeyboard)
+
 
     elif query_data in listOfGraphs:
         path = grafi.printData(query_data)
         if path != "Not Valid Param":
-            bot.sendPhoto(from_id, open(path, 'rb'))
-            bot.sendMessage(from_id, "Torna al menù principale", reply_markup=backKeyboard)
+            bot.sendPhoto(from_id, open(path, 'rb'),reply_markup=backKeyboard)
+
     
         else:
-            bot.sendMessage(from_id, "Scelta non valida")
-            bot.sendMessage(from_id, "Torna al menù principale", reply_markup=backKeyboard)
+            bot.sendMessage(from_id, "Scelta non valida",reply_markup=backKeyboard)
+
 
     elif query_data in listOfRegions:
         path=mappe.getImage(query_data)
-        bot.sendPhoto(from_id, open(path,'rb'))
-        bot.sendMessage(from_id, "Torna al menù principale", reply_markup=backKeyboard)
+        bot.sendPhoto(from_id, open(path,'rb'), reply_markup=backKeyboard)
+
 
     else:
-        bot.sendMessage(from_id, "Scelta non valida")
-        bot.sendMessage(from_id, "Torna al menù principale", reply_markup=backKeyboard)
+        bot.sendMessage(from_id, "Scelta non valida", reply_markup=backKeyboard)
+
 
 
 if __name__ == "__main__":
