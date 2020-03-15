@@ -36,9 +36,9 @@ mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
 
 data = DocManager().update()
 mappe = MapManagementClass(data)
-# grafi = GraphManager()
+grafi = GraphManager()
 confronto = ConfrontoManager()
-# rete = AdvancedGraphManager()
+rete = AdvancedGraphManager()
 info = TxtManager()
 
 def getDataFromJson(url):
