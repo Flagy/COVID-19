@@ -26,6 +26,7 @@ listOfGraphs=["Ricoverati con sintomi","Terapia intensiva",'Totale ospedalizzati
 listOfStats = ["Percentuale guarigioni","Percentuale dimessi","Percentuale ricoverati","Percentuale decessi"]
 listConfronts = ["tamponi","totale_attualmente_positivi", "deceduti", "nuovi_attualmente_positivi", "totale_ospedalizzati","totale_casi"]
 mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text = 'Autocertificazione',callback_data = 'moduloAutocertificazione')],
             [InlineKeyboardButton(text = 'Testuali',callback_data = 'textualData')],
             [InlineKeyboardButton(text = 'Grafiche',callback_data = 'Images')],
             [InlineKeyboardButton(text = 'Infografiche',callback_data = 'Infografiche')],
@@ -35,9 +36,9 @@ mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
 
 data = DocManager().update()
 mappe = MapManagementClass(data)
-grafi = GraphManager()
+# grafi = GraphManager()
 confronto = ConfrontoManager()
-rete = AdvancedGraphManager()
+# rete = AdvancedGraphManager()
 info = TxtManager()
 
 def getDataFromJson(url):
@@ -84,6 +85,10 @@ def on_callback_query(msg):
             msg_str += str(key) + ': ' + str(value) +'\n'
         bot.sendMessage(from_id, msg_str)
         bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
+
+    elif query_data == "moduloAutocertificazione":
+        with open("AutocertificazioneBlank.pdf", "rb") as f:
+            bot.sendDocument(from_id, f)
 
     elif query_data=="Infografiche":
         paths=rete.getPath()
@@ -173,7 +178,7 @@ def on_callback_query(msg):
 
 if __name__ == "__main__":
     
-    TOKEN = "1097804080:AAHCv4KgmI6fz1nZcRPzNoR0qO1yZEuiQ_8"
+    TOKEN = sys.argv[1]
     print(TOKEN)
     
 
