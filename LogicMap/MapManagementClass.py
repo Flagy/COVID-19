@@ -22,21 +22,35 @@ class MapManagementClass():
         den_corretta=""
         if regione=="Valle_D_Aosta":
             den_corretta="Valle d'Aosta"
+            self.data = self.data[self.data["lat"] > 0]
+            self.data = self.data[self.data["totale_casi"] > 0]
+            self.data = self.data[self.data["denominazione_regione"] == den_corretta]
         elif regione=="Emilia_Romagna":
             den_corretta="Emilia Romagna"
+            self.data = self.data[self.data["lat"] > 0]
+            self.data = self.data[self.data["totale_casi"] > 0]
+            self.data = self.data[self.data["denominazione_regione"] == den_corretta]
         elif regione=="Trentino_Alto_Adige":
-            den_corretta="Trentino Alto Adige"
+            col=['P.A. Trento', 'P.A. Bolzano']
+            self.data = self.data[self.data["lat"] > 0]
+            self.data = self.data[self.data["totale_casi"] > 0]
+            self.data = self.data[self.data["denominazione_regione"].isin(col)]
+
         elif regione=="Friuli_Venezia_Giulia":
             den_corretta="Friuli Venezia Giulia"
+            self.data = self.data[self.data["lat"] > 0]
+            self.data = self.data[self.data["totale_casi"] > 0]
+            self.data = self.data[self.data["denominazione_regione"] == den_corretta]
         else:
             den_corretta=regione
-        print(self.data)
+            self.data = self.data[self.data["lat"] > 0]
+            self.data = self.data[self.data["totale_casi"] > 0]
+            self.data = self.data[self.data["denominazione_regione"] == den_corretta]
+
         
         
         
-        self.data = self.data[self.data["lat"] > 0 ]
-        self.data=self.data[self.data["totale_casi"]>0]
-        self.data=self.data[self.data["denominazione_regione"]==den_corretta]
+
        
            
     def getImage(self,param):
