@@ -16,10 +16,9 @@ from GraphManagement.GraphManager import GraphManager
 from GraphManagement.AdvancedGraphManager import AdvancedGraphManager
 import json
 import codecs
-
 import matplotlib.pyplot as plt
 
-listOfRegions=['Abruzzo','Basilicata','Calabria','Campania','Emilia_Romagna','Friuli_Venezia_Giulia','Friuli_Venezia_Giulia','Lazio','Liguria',
+listOfRegions=['Abruzzo','Basilicata','Calabria','Campania','Emilia_Romagna','Friuli_Venezia_Giulia','Lazio','Liguria',
                'Lombardia','Marche','Molise','Piemonte','Puglia','Sardegna','Sicilia','Toscana','Trentino_Alto_Adige','Umbria','Valle_D_Aosta','Veneto']
 listOfGraphs=["Ricoverati con sintomi","Terapia intensiva",'Totale ospedalizzati', "Isolamento domiciliare", 'Totale attualmente positivi', "Nuovi attualmente positivi",'Dimessi guariti',
               'Deceduti','Totale casi','Tamponi']
@@ -33,11 +32,11 @@ mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text = 'Confronto regioni',callback_data = 'Confronto')],
             [InlineKeyboardButton(text = 'Statistiche',callback_data = 'Statistiche')]])
 
-data = DocManager().update()
-mappe = MapManagementClass(data)
+# data = DocManager().update()
+# mappe = MapManagementClass(data)
 grafi = GraphManager()
 confronto = ConfrontoManager()
-rete = AdvancedGraphManager()
+# rete = AdvancedGraphManager()
 info = TxtManager()
 
 def getDataFromJson(url):
@@ -45,19 +44,20 @@ def getDataFromJson(url):
     decoded_data = json.loads(codecs.decode(data.text.encode(), 'utf-8-sig'))
     return decoded_data
 
+
 def on_inline_query(msg):
     def compute():
         query_id, from_id, query_string = telepot.glance(msg, flavor='inline_query')
         print('Inline Query:', query_id, from_id, query_string)
 
-        articles = [InlineQueryResultArticle(
-                        id='txtITA',
-                        title="Ultimi dati, testo",
+        articles = []
+        articles.append(InlineQueryResultArticle(id="idItaly", title="ITALIA",
                         input_message_content=InputTextMessageContent(
-                            message_text="Informazioni CoronaVirus in Italia aggiornate:\n\n"+info.textualInfoItaly(jsonData),
-                        ),
-                   )]
-
+                            message_text="Informazioni CoronaVirus in ITALIA aggiornate:\n\n" + info.textualInfoItaly(jsonData))))
+        for el in listOfRegions:
+            articles.append(InlineQueryResultArticle(id="id"+el, title=el,
+                        input_message_content=InputTextMessageContent(
+                            message_text="Informazioni CoronaVirus in "+el+" aggiornate:\n\n" + info.textualInfoRegion(getDataFromJson(urlRegionalData), el))))
         return articles
 
     answerer.answer(msg, compute)
@@ -172,7 +172,7 @@ def on_callback_query(msg):
 
 if __name__ == "__main__":
     
-    TOKEN = sys.argv[1]
+    TOKEN = "1097804080:AAHCv4KgmI6fz1nZcRPzNoR0qO1yZEuiQ_8"
     print(TOKEN)
     
 

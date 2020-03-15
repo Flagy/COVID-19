@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 class GraphManager():
+
     def __init__(self):
         self.url="https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json"
         r = requests.get(self.url)
@@ -14,6 +15,11 @@ class GraphManager():
                 "Isolamento domiciliare":"isolamento_domiciliare" , "Totale attualmente positivi":"totale_attualmente_positivi",
                              "Nuovi attualmente positivi":"nuovi_attualmente_positivi","Dimessi guariti":"dimessi_guariti",
                              "Deceduti":"deceduti","Totale casi":"totale_casi","Tamponi":"tamponi"}
+
+    def pieChart(self, jsonData, region):
+        keys = ["Dimessi", "Deceduti", "Attualmente positivi"] # la somma fa il numero totale casi
+        pass
+
     def printData(self,param):
         try:
             print(self.conversionDict[param])
@@ -24,7 +30,9 @@ class GraphManager():
             ax.figure.figimage(logo, 3, 3, alpha=0.7, zorder=1)
             plt.xticks(rotation=90)
             plt.savefig('./GraphManagement/tempGraph/temp_1.png', bbox_inches = "tight",dpi=199)
+            
             return('./GraphManagement/tempGraph/temp_1.png')
+
         except Exception as e:
             print(e)            
             return('Not Valid Param')
