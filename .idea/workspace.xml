@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d3b2fcc-5a0d-4a17-b05f-6ed9dd77cd9c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphManagement/AdvancedGraphManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/GraphManagement/AdvancedGraphManager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,14 +117,22 @@
       <option name="project" value="LOCAL" />
       <updated>1584211847499</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Nuovacodifica per json in main nella funzione getdataFromJson">
+      <created>1584212040642</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1584212040642</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Delete double inline keyboard field" />
     <MESSAGE value="Nuovacodificaper json in graph manager" />
     <MESSAGE value="Nuovacodifica per json in confronti" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nuovacodifica per json in confronti" />
+    <MESSAGE value="Nuovacodifica per json in main nella funzione getdataFromJson" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nuovacodifica per json in main nella funzione getdataFromJson" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Notifications" timestamp="1584123460245">
@@ -142,10 +151,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="148" y="273" key="#xdebugger.XInspectDialog/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584123817497" />
-    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1584211846739">
+    <state x="614" y="114" key="CommitChangelistDialog2" timestamp="1584212039902">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584211846739" />
+    <state x="614" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584212039902" />
     <state x="184" y="86" key="DiffContextDialog" timestamp="1584211077851">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -190,10 +199,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584123409733" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1584211453515">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1584212366531">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584211453515" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584212366531" />
     <state x="482" y="225" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1584123468507">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -202,10 +211,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="661" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584210897736" />
-    <state x="673" y="311" key="git4idea.merge.GitPullDialog" timestamp="1584211088048">
+    <state x="673" y="311" key="git4idea.merge.GitPullDialog" timestamp="1584282581151">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="673" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584211088048" />
+    <state x="673" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040/1920.0.1360.728@0.0.1920.1040" timestamp="1584282581151" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
