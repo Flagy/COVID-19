@@ -80,7 +80,7 @@ class MapManagementClass():
             ax.annotate(int(num_casi), xy=(x, y), xytext=(-10, 0), textcoords="offset points",weight='bold',fontsize=10)
         ax.figure.figimage(logo, 5, 5, alpha=1, zorder=1)
         gdf.plot(ax=ax, color='#f97d77', markersize=self.data['totale_casi'])
-        plt.title(param+" - totale casi positivi - "+self.data['data'][0], fontweight="bold")
+        plt.title(param+" - totale casi positivi - "+self.data['data'].iloc[-1], fontweight="bold")
 
         plt.savefig('LogicMap/temp/temp_1.png', dpi=199)
         return('./LogicMap/temp/temp_1.png')

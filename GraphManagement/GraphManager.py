@@ -12,7 +12,7 @@ class GraphManager():
         r = requests.get(self.url)
         decoded_data = codecs.decode(r.text.encode(), 'utf-8-sig')
         self.data=json_normalize(json.loads(decoded_data))
-        self.datadioggi=self.data[-1]["data"]
+        self.datadioggi=self.data["data"].iloc[-1]
         self.data["data"] = self.data["data"].replace(to_replace=r'\s(.*)', value='', regex=True)
         self.conversionDict={"Ricoverati con sintomi":"ricoverati_con_sintomi","Terapia intensiva":"terapia_intensiva","Totale ospedalizzati":"totale_ospedalizzati",
                 "Isolamento domiciliare":"isolamento_domiciliare" , "Totale attualmente positivi":"totale_attualmente_positivi",
