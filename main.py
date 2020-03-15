@@ -27,13 +27,13 @@ listOfGraphs=["Ricoverati con sintomi","Terapia intensiva",'Totale ospedalizzati
 listOfStats = ["Percentuale guarigioni","Percentuale dimessi","Percentuale ricoverati","Percentuale decessi"]
 listConfronts = ["tamponi","totale_attualmente_positivi", "deceduti", "nuovi_attualmente_positivi", "totale_ospedalizzati","totale_casi"]
 mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text='Andamenti', callback_data='Andamenti')],
             [InlineKeyboardButton(text = 'Autocertificazione',callback_data = 'moduloAutocertificazione')],
-            [InlineKeyboardButton(text = 'Testuali',callback_data = 'textualData')],
-            [InlineKeyboardButton(text = 'Grafiche',callback_data = 'Images')],
-            [InlineKeyboardButton(text = 'Infografiche',callback_data = 'Infografiche')],
-            [InlineKeyboardButton(text = 'Andamenti',callback_data = 'Andamenti')],
-            [InlineKeyboardButton(text = 'Confronto regioni',callback_data = 'Confronto')],
-            [InlineKeyboardButton(text = 'Statistiche',callback_data = 'Statistiche')]])
+            [InlineKeyboardButton(text = 'Confronto tra regioni',callback_data = 'Confronto')],
+            [InlineKeyboardButton(text='Geomappe', callback_data='Images')],
+            [InlineKeyboardButton(text='Infografiche Nazionali', callback_data='Infografiche')],
+            [InlineKeyboardButton(text = 'Resoconto Nazionale',callback_data = 'textualData')],
+            [InlineKeyboardButton(text = 'Statistiche Nazionali',callback_data = 'Statistiche')]])
 
 data = DocManager().update()
 mappe = MapManagementClass(data)
@@ -74,7 +74,7 @@ def on_chat_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     pprint(msg)
     if content_type == 'text':    
-        bot.sendMessage(chat_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
+        bot.sendMessage(chat_id, "Benvenutop nel bot COVID19. Questo Bot è stato pensato per la divulgazione dei dati ufficiali della Protezione Civile. Seleziona un'opzione.  ", reply_markup = mainKeyboard)
 
 
 def on_callback_query(msg):
@@ -85,7 +85,7 @@ def on_callback_query(msg):
         for key, value in jsonData[-1].items():
             msg_str += str(key) + ': ' + str(value) +'\n'
         bot.sendMessage(from_id, msg_str)
-        bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
+        #bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
 
     elif query_data == "moduloAutocertificazione":
         with open("AutocertificazioneBlank.pdf", "rb") as f:
@@ -95,7 +95,7 @@ def on_callback_query(msg):
         paths=rete.getPath()
         for path in paths:
             bot.sendPhoto(from_id, open(path, 'rb'))
-        bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
+        #bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
              
     elif query_data=="Confronto":
         confrontoKeyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -109,7 +109,7 @@ def on_callback_query(msg):
 
     elif query_data in listConfronts:
         bot.sendPhoto(from_id, open(confronto.getBarplot1param(query_data), 'rb'))
-        bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
+       # bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
 
     elif query_data=="Images":
         keyboard = InlineKeyboardMarkup(inline_keyboard=[
@@ -162,16 +162,16 @@ def on_callback_query(msg):
         path = grafi.printData(query_data)
         if path != "Not Valid Param":
             bot.sendPhoto(from_id, open(path, 'rb'))
-            bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
+            #bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
     
         else:
             bot.sendMessage(from_id, "Scelta non valida")
-            bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
+           # bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup=mainKeyboard)
 
     elif query_data in listOfRegions:
         path=mappe.getImage(query_data)
         bot.sendPhoto(from_id, open(path,'rb'))
-        bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
+       # bot.sendMessage(from_id, "Ultime Informazioni:", reply_markup = mainKeyboard)
 
     else:
         bot.sendMessage(from_id, "Scelta non valida")
