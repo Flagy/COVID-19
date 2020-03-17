@@ -22,21 +22,35 @@ class MapManagementClass():
         den_corretta=""
         if regione=="Valle_D_Aosta":
             den_corretta="Valle d'Aosta"
+            self.data = self.data[self.data["lat"] > 0]
+            self.data = self.data[self.data["totale_casi"] > 0]
+            self.data = self.data[self.data["denominazione_regione"] == den_corretta]
         elif regione=="Emilia_Romagna":
             den_corretta="Emilia Romagna"
+            self.data = self.data[self.data["lat"] > 0]
+            self.data = self.data[self.data["totale_casi"] > 0]
+            self.data = self.data[self.data["denominazione_regione"] == den_corretta]
         elif regione=="Trentino_Alto_Adige":
-            den_corretta="Trentino Alto Adige"
+            col=['P.A. Trento', 'P.A. Bolzano']
+            self.data = self.data[self.data["lat"] > 0]
+            self.data = self.data[self.data["totale_casi"] > 0]
+            self.data = self.data[self.data["denominazione_regione"].isin(col)]
+
         elif regione=="Friuli_Venezia_Giulia":
             den_corretta="Friuli Venezia Giulia"
+            self.data = self.data[self.data["lat"] > 0]
+            self.data = self.data[self.data["totale_casi"] > 0]
+            self.data = self.data[self.data["denominazione_regione"] == den_corretta]
         else:
             den_corretta=regione
-        print(self.data)
+            self.data = self.data[self.data["lat"] > 0]
+            self.data = self.data[self.data["totale_casi"] > 0]
+            self.data = self.data[self.data["denominazione_regione"] == den_corretta]
+
         
         
         
-        self.data = self.data[self.data["lat"] > 0 ]
-        self.data=self.data[self.data["totale_casi"]>0]
-        self.data=self.data[self.data["denominazione_regione"]==den_corretta]
+
        
            
     def getImage(self,param):
@@ -54,7 +68,7 @@ class MapManagementClass():
         list_of_province=[]
         k=0
         for i in self.data['totale_casi']:
-            patch=mpatches.Patch( edgecolor="w", facecolor="w", color="w",label=str(int(i))+ " : "+legenda[k])
+            patch=mpatches.Patch( edgecolor="w", facecolor="w", color="w",label=legenda[k]+ " : "+str(int(i)))
             k=k+1
             list_of_province.append(patch)
         box = ax.get_position()
@@ -66,6 +80,7 @@ class MapManagementClass():
             ax.annotate(int(num_casi), xy=(x, y), xytext=(-10, 0), textcoords="offset points",weight='bold',fontsize=10)
         ax.figure.figimage(logo, 5, 5, alpha=1, zorder=1)
         gdf.plot(ax=ax, color='#f97d77', markersize=self.data['totale_casi'])
-                 
+        plt.title(param+" - totale casi positivi - "+self.data['data'].iloc[-1], fontweight="bold")
+
         plt.savefig('LogicMap/temp/temp_1.png', dpi=199)
         return('./LogicMap/temp/temp_1.png')

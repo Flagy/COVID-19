@@ -56,6 +56,7 @@ class ConfrontoManager(object):
         # Custom X axis
         plt.xlabel("Regioni")
         plt.ylabel(param)
+        plt.title(self.regioniOggi[-1]['data'],fontweight='light')
         ax.figure.figimage(logo, 5, 5, alpha=1, zorder=1)
         plt.savefig("./ConfrontiTraRegioni/tmp/img.png", bbox_inches = "tight", dpi=199)
         # Show graphic

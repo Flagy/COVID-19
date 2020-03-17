@@ -12,6 +12,7 @@ class GraphManager():
         r = requests.get(self.url)
         decoded_data = codecs.decode(r.text.encode(), 'utf-8-sig')
         self.data=json_normalize(json.loads(decoded_data))
+        self.datadioggi=self.data["data"].iloc[-1]
         self.data["data"] = self.data["data"].replace(to_replace=r'\s(.*)', value='', regex=True)
         self.conversionDict={"Ricoverati con sintomi":"ricoverati_con_sintomi","Terapia intensiva":"terapia_intensiva","Totale ospedalizzati":"totale_ospedalizzati",
                 "Isolamento domiciliare":"isolamento_domiciliare" , "Totale attualmente positivi":"totale_attualmente_positivi",
@@ -31,6 +32,8 @@ class GraphManager():
             logo=plt.imread('./logobot.jpeg')
             ax.figure.figimage(logo, 3, 3, alpha=0.7, zorder=1)
             plt.xticks(rotation=90)
+            plt.title(self.datadioggi,fontweight='light')
+
             plt.savefig('./GraphManagement/tempGraph/temp_1.png', bbox_inches = "tight",dpi=199)
             
             return('./GraphManagement/tempGraph/temp_1.png')
