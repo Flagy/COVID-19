@@ -37,12 +37,6 @@ mainKeyboard = InlineKeyboardMarkup(inline_keyboard=[
 backKeyboard = InlineKeyboardMarkup(inline_keyboard=[
             [InlineKeyboardButton(text='Indietro', callback_data='indietro')]])
 
-data = DocManager().update()
-mappe = MapManagementClass(data)
-grafi = GraphManager()
-confronto = ConfrontoManager()
-rete = AdvancedGraphManager()
-info = TxtManager()
 
 def getDataFromJson(url):
     data = requests.get(url)
@@ -196,12 +190,28 @@ if __name__ == "__main__":
     jsonRegionalData = getDataFromJson(urlRegionalData)
     bot = telepot.Bot(TOKEN)
     bot.urlNationalData = urlNationalData
-
+    data = DocManager().update()
+    mappe = MapManagementClass(data)
+    grafi = GraphManager()
+    confronto = ConfrontoManager()
+    rete = AdvancedGraphManager()
+    info = TxtManager()
     answerer = telepot.helper.Answerer(bot)
 
     MessageLoop(bot, {'chat':on_chat_message, 'callback_query':on_callback_query,
                         'inline_query': on_inline_query,
                         'chosen_inline_result': on_chosen_inline_result}).run_forever()
 
-    MessageLoop(bot, {'chat':on_chat_message,'callback_query':on_callback_query}).run_forever()
+    MessageLoop(bot, {'chat':on_chat_message,'callback_query':on_callback_query}).run_as_thread()
     print('Listening...')
+    
+    while True:
+        time.sleep(300) # al più 5 minuti di ritardo dal server.
+        jsonData = getDataFromJson(urlNationalData)
+        jsonRegionalData = getDataFromJson(urlRegionalData)
+        data = DocManager().update()
+        mappe = MapManagementClass(data)
+        grafi = GraphManager()
+        confronto = ConfrontoManager()
+        rete = AdvancedGraphManager()
+        info = TxtManager()
