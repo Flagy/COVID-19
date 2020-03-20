@@ -3,7 +3,7 @@ import time
 import telepot
 from telepot.loop import MessageLoop
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton, InlineQueryResultArticle, InputTextMessageContent
-
+import datetime
 import requests
 import json
 from pprint import pprint
@@ -17,6 +17,7 @@ from GraphManagement.AdvancedGraphManager import AdvancedGraphManager
 import json
 import codecs
 import matplotlib.pyplot as plt
+from io import StringIO
 
 listOfRegions=['Abruzzo','Basilicata','Calabria','Campania','Emilia_Romagna','Friuli_Venezia_Giulia','Lazio','Liguria',
                'Lombardia','Marche','Molise','Piemonte','Puglia','Sardegna','Sicilia','Toscana','Trentino_Alto_Adige','Umbria','Valle_D_Aosta','Veneto']
@@ -186,11 +187,13 @@ if __name__ == "__main__":
 
     urlNationalData = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json"
     urlRegionalData = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json"
+    urlCVS = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-province/dpc-covid19-ita-province-{YYYYMMDD}.csv"
+    urlCVS = urlCVS.replace("{YYYYMMDD}",datetime.today().strftime('%Y%m%d'))
     jsonData = getDataFromJson(urlNationalData)
     jsonRegionalData = getDataFromJson(urlRegionalData)
     bot = telepot.Bot(TOKEN)
     bot.urlNationalData = urlNationalData
-    data = DocManager().update()
+    data = StringIO(requests.get(urlCVS).text)
     mappe = MapManagementClass(data)
     grafi = GraphManager()
     confronto = ConfrontoManager()
@@ -209,7 +212,9 @@ if __name__ == "__main__":
         time.sleep(300) # al più 5 minuti di ritardo dal server.
         jsonData = getDataFromJson(urlNationalData)
         jsonRegionalData = getDataFromJson(urlRegionalData)
-        data = DocManager().update()
+        urlCVS = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-province/dpc-covid19-ita-province-{YYYYMMDD}.csv"
+        urlCVS = urlCVS.replace("{YYYYMMDD}",datetime.today().strftime('%Y%m%d'))
+        data = StringIO(requests.get(urlCVS).text)
         mappe = MapManagementClass(data)
         grafi = GraphManager()
         confronto = ConfrontoManager()
