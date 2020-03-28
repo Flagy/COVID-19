@@ -1,6 +1,8 @@
 
-<img src="logobot.jpeg" alt="COVID-19" width="200" />
+<p align="center">
+  <img src="logobot.jpeg" alt="COVID-19" width="200" />
 
+</p>
 # Dati COVID-19 Italia
 
 [![GitHub license](https://img.shields.io/github/license/pcm-dpc/COVID-19)](https://github.com/pcm-dpc/COVID-19/blob/master/license)
