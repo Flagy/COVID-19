@@ -1,5 +1,5 @@
 
-<img src="logobot.jpeg" alt="COVID-19"width="200" />
+<img src="logobot.jpeg" alt="COVID-19" width="200" />
 
 # Dati COVID-19 Italia
 
