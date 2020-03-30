@@ -8,7 +8,7 @@
 # COVID-19 Italia Bot
 ## Telegram Bot for Data Anlytics and Visualization
 
-The exposed system creates a bot for the instant messaging telegram platform for the diffusion of data on the diffusion of COVID-19 in Italy, using the collected daily data provided by Protezione Civile.
+The system is based on a bot for the instant messaging platform telegram  with the aim of the diffusion of data on the COVID-19 in Italy, using the collected daily data provided by Protezione Civile.
 
 In order to inform citizens and make the data collected available, useful only for communication and information purposes, our team developed this bot that through chat interface can provide the requested information. 
 <p align="center">
