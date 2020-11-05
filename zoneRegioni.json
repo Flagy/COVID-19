@@ -1,0 +1,81 @@
+[{
+		"denominazione_regione": "Abruzzo",
+		"zona": "gialla"
+	},
+	{
+		"denominazione_regione": "Basilicata",
+		"zona": "gialla"
+	},
+	{
+		"denominazione_regione": "Calabria",
+		"zona": "rossa"
+	},
+	{
+		"denominazione_regione": "Campania",
+		"zona": "gialla"
+	},
+	{
+		"denominazione_regione": "Emilia-Romagna",
+		"zona": "gialla"
+	},
+	{
+		"denominazione_regione": "Friuli Venezia Giulia",
+		"zona": "gialla"
+	},
+	{
+		"denominazione_regione": "Lazio",
+		"zona": "gialla"
+	},
+	{
+		"denominazione_regione": "Liguria",
+		"zona": "gialla"
+	},
+	{
+		"denominazione_regione": "Lombardia",
+		"zona": "rossa"
+	},
+	{
+		"denominazione_regione": "Marche",
+		"zona": "gialla"
+	},
+	{
+		"denominazione_regione": "Molise",
+		"zona": "gialla"
+	},
+	{
+		"denominazione_regione": "P.A. Bolzano",
+		"zona": "gialla"
+	},
+	{
+		"denominazione_regione": "Piemonte",
+		"zona": "rossa"
+	},
+	{
+		"denominazione_regione": "Puglia",
+		"zona": "arancione"
+	},
+	{
+		"denominazione_regione": "Sardegna",
+		"zona": "gialla"
+	},
+	{
+		"denominazione_regione": "Sicilia",
+		"zona": "arancione"
+	},
+	{
+		"denominazione_regione": "Toscana",
+		"zona": "gialla"
+	},
+	{
+		"denominazione_regione": "Umbria",
+		"zona": "gialla"
+	},
+	{
+		"denominazione_regione": "Valle d'Aosta",
+		"zona": "rossa"
+	},
+	{
+		"denominazione_regione": "Veneto",
+		"zona": "gialla"
+	}
+]
